@@ -8,41 +8,33 @@ describe('Lexer', function () {
 		should.exist(lxr);
 	});
 
-	describe('space_tokenizer()', function () {
+	describe('tokenizer', function () {
 		it('should exist', function () {
-			should.exist(lxr.space_tokenizer);
+			should.exist(lxr.tokenizer);
 		});
 
-		it('should return tokens', function () {
-			lxr.space_tokenizer('y m d').should.eql(['y', 'm', 'd']);
-		});
-	});
-
-	describe('dot_tokenizer()', function () {
-		it('should exist', function () {
-			should.exist(lxr.dot_tokenizer);
-		});
-
-		it('should return tokens on . operator', function () {
-			lxr.dot_tokenizer('d.sat').should.eql(['d', '.sat']);
+		it('should tokenize completely', function () {
+			lxr.tokenizer('m:n[2x].jan w:n[2] d.mon').should.eql([
+				'm',
+				':n[2x]',
+				'.jan',
+				'w',
+				':n[2]',
+				'd',
+				'.mon'
+			]);
 		});
 
-		it('should return tokens on multiple . operator', function () {
-			lxr.dot_tokenizer('d.sat.21').should.eql(['d', '.sat', '.21']);
-		});
-	});
-
-	describe('colon_tokenizer()', function () {
-		it('should exist', function () {
-			should.exist(lxr.colon_tokenizer);
-		});
-
-		it('should return tokens on . operator', function () {
-			lxr.colon_tokenizer('d:n[100]').should.eql(['d', ':n[100]']);
-		});
-
-		it('should return tokens on multi : operator', function () {
-			lxr.colon_tokenizer('d:n[100]:n[2n]').should.eql(['d', ':n[100]', ':n[2n]']);
+		it('should tokenize colon in end', function () {
+			lxr.tokenizer('m.jan:n[2x] w:n[2] d.mon').should.eql([
+				'm',
+				'.jan',
+				':n[2x]',
+				'w',
+				':n[2]',
+				'd',
+				'.mon'
+			]);
 		});
 	});
 });

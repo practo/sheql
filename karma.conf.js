@@ -13,7 +13,7 @@ module.exports = function (config) {
 
 		// list of files / patterns to load in the browser
 		files: [
-			'public/javascripts/sheql-parser.js',
+			'public/javascripts/sheql-*.js',
 			'public/bower_components/underscore/underscore.js',
 			'test/*.js'
 		],
