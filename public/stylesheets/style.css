@@ -84,21 +84,50 @@ input,select,textarea {
 #sheql-querybox input.form-control {
 	height: 30px;
 	border-radius: 0;
-	border-top: none;
-	border-left: none;
-	border-right: none;
+	border: none;
+	border-bottom: 1px solid #AADE84;
 	box-shadow: none;
+}
+
+#sheql-querybox input.form-control:hover,
+#sheql-querybox input.form-control:focus {
+	border-bottom: 1px solid #00A000;
 }
 #fc-container {
 	margin-top: 20px;
 }
+.fc-year-monthly-name {
+	text-align: left;
+}
 .fc-year-monthly-name a{
 	font-weight: normal;
-	color: #005f20;
+	text-align: left;
+	color: #4d4d4d;
 	font-family: 'Open Sans Semi Bold';
 }
 .fc-year-weekly-head {
 	font-weight: normal;
-	font-family: 'Open Sans Semi Bold';
-	color: #006192;
+	font-family: 'Open Sans';
+	color: #b3b3b3;
+}
+.fc-year-month-separator{
+	width: 24px;
+}
+.fc td.fc-sun {
+	background: #f2f2f2;
+}
+.fc .fc-other-month .fc-day-number {
+	opacity: 0.25;
+}
+.fc .fc-today {
+	background: #ff8c8c;
+	font-weight: bold;
+	color: #fff;
+}
+.fc .fc-other-month.fc-today {
+	background: none;
+	color: #000;
+}
+.fc .fc-other-month.fc-today.fc-sun {
+	background: #f2f2f2;
 }
