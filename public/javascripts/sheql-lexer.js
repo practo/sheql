@@ -1,7 +1,7 @@
-var Sheql = (function () {
+var Lexer = (function () {
 
-	function Sheql() {}
-	var _proto = Sheql.prototype;
+	function Lexer() {}
+	var _proto = Lexer.prototype;
 
 	_proto.space_tokenizer = function (str) {
 		return str.split(' ');
@@ -37,5 +37,5 @@ var Sheql = (function () {
 		return returnValue;
 	};
 
-	return Sheql;
+	return Lexer;
 })();
