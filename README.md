@@ -88,7 +88,7 @@ y d:n[100] _1500
 
 ```css
 y m:n[1] d:n[14]
-y m.fe```b d:n[14]
+y m.feb d:n[14]
 
 **Every 20th day**
 
@@ -108,17 +108,17 @@ y m:n[-n+3] d:n[n+1]:n[-n+1]
 **every month first sat after 12th**
 
 ```css
-m d.sat:n[n+12, 1]    //NOT SUPPORTED AS OF NOW
+m d.sat:n[n+12, 1]    /*NOT SUPPORTED AS OF NOW*/
 ```
 **every month alternate days after 12th**
 
 ```css
-m d:n[n+12, 2n]   //NOT SUPPORTED AS OF NOW
+m d:n[n+12, 2n]   /*NOT SUPPORTED AS OF NOW*/
 ```
 **4th april 2016**
 
 ```css
-_040420160800;        //NOT SUPPORTED AS OF NOW
+_040420160800;        /*NOT SUPPORTED AS OF NOW*/
 ```
 **31st day is tuesday**
 
@@ -138,6 +138,6 @@ m d.sat.10
 **15 days from the third mon of a month**
 
 ```css
-m d.mon:n[3]:n[n+1,n+15](2) //NOT SUPPORTED AS OF NOW
-m d.mon:n[3]~d:n[n+15](3)   //NOT SUPPORTED
+m d.mon:n[3]:n[n+1,n+15](2) /*NOT SUPPORTED AS OF NOW*/
+m d.mon:n[3]~d:n[n+15](3)   /*NOT SUPPORTED*/
 ```
