@@ -32,9 +32,9 @@ var TokenFactory = (function () {
 
 	_proto.instantiate = function (token) {
 		var tokenType = this.getTokenType(token);
-		var tokenInstance = new this.tokenConstructorCollection[tokenType]();
-		tokenInstance.init(token, tokenType);
-		return tokenInstance;
+		var tokenFilterInstance = new this.tokenConstructorCollection[tokenType]();
+		tokenFilterInstance.init(token, tokenType);
+		return tokenFilterInstance;
 	};
 
 	return TokenFactory;
