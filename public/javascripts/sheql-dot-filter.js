@@ -25,25 +25,30 @@ var DotFilter = (function () {
 		this.token = token;
 	};
 
-	_proto.getFilterType = function (str) {
-		if (str === '.leap') {
+	_proto.getFilterType = function (token) {
+		if (token === '.leap') {
 			return 'yearType';
 		}
-		if (_.contains(monthName, str)) {
+		if (_.contains(monthName, token)) {
 			return 'monthName';
 		}
 
-		if (_.contains(monthSize, str)) {
+		if (_.contains(monthSize, token)) {
 			return 'monthSize';
 		}
 
-		if (str.match(/^\.[0-3][0-9]$/)) {
+		if (token.match(/^\.[0-3][0-9]$/)) {
 			return 'dateNumber';
 		}
 	};
 
 	_proto.filter = function (selectedRange) {
-
+		var filterType = this.getFilterType(this.token);
+		switch (filterType) {
+		case 'yearType':
+			selectedRange.getYears();
+			break;
+		}
 	};
 
 	return DotFilter;
