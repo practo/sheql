@@ -16,7 +16,7 @@ SHEQL RULES
 
     precedence: LEFT -> RIGHT
 
-***Selectors for Date manipulation***
+**Selectors for Date manipulation**
 
 **Yearly repeated on the 45th day**
 
@@ -143,4 +143,9 @@ m d.sat.10
 ```css
 m d.mon:n[3]:n[n+1,n+15](2) /*NOT SUPPORTED AS OF NOW*/
 m d.mon:n[3]~d:n[n+15](3)   /*NOT SUPPORTED*/
+```
+
+**All days in a month except fridays**
+```css
+m d!fri  /*NOT SUPPORTED AS OF NOW*/
 ```

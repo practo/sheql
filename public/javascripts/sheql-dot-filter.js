@@ -74,11 +74,27 @@ var DotFilter = (function () {
 
 	_proto.filter = function (selectedRange) {
 		var filterType = this.getFilterType(this.token);
+		var tokenValue = this.getTokenValue(this.token);
 		switch (filterType) {
 		case 'yearType':
-			selectedRange.getYears();
+			if (tokenValue === 'leap') {
+				return selectedRange.getLeapYears(tokenValue);
+			}
 			break;
+		case 'monthName':
+			return selectedRange.getMonthByName(tokenValue);
+
+		case 'monthSize':
+			return selectedRange.getMonthBySize(tokenValue);
+
+		case 'weekdayName':
+			return selectedRange.getDayByName(tokenValue);
+
+		case 'dateNumber':
+			return selectedRange.getDayByDateNumber(tokenValue);
 		}
+
+		return selectedRange;
 	};
 
 	return DotFilter;
