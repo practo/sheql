@@ -20,7 +20,7 @@ describe('ColonFilter', function () {
 
 	describe('getX0(token)', function () {
 		it('should return 0', function () {
-			col.getX0(':n[x]').should.equal('');
+			col.getX0(':n[x]').should.equal('0');
 		});
 
 		it('should return 1', function () {
@@ -30,59 +30,54 @@ describe('ColonFilter', function () {
 		it('should return 25', function () {
 			col.getX0(':n[x+25]').should.equal('25');
 		});
+		it('should return 35', function () {
+			col.getX0(':n[35]').should.equal('35');
+		});
+
+	});
+
+	describe('getX1(token)', function () {
+		it('should return 1', function () {
+			col.getX1(':n[x]').should.equal('1');
+		});
+
+		it('should return 2', function () {
+			col.getX1(':n[2x]').should.equal('2');
+		});
+
+		it('should return 25', function () {
+			col.getX1(':n[25x]').should.equal('25');
+		});
+
+		it('should return 0', function () {
+			col.getX1(':n[25]').should.equal('0');
+		});
 	});
 
 	describe('getTokenValue(token)', function () {
-		// it('should return type', function () {
-		//  col.getTokenValue(':n[2x+1]').type.should.equal('n');
-		// });
 
-		// it('should return x0', function () {
-		//  col.getTokenValue(':n[2x+1]').x0.should.equal(1);
-		// });
+		it('should return for lth values', function () {
+			col.getTokenValue(':l[2x+1]').should.eql({
+				type: 'l',
+				x0: 1,
+				x1: 2
+			});
+		});
 
-		// it('should return x0:0', function () {
-		//  col.getTokenValue(':n[2x]').x0.should.equal(0);
-		// });
-
-		// it('should return x1:2', function () {
-		//  col.getTokenValue(':n[2x+1]').x1.should.equal(2);
-		// });
-
-		// it('should return x1:0', function () {
-		//  col.getTokenValue(':n[x]').x1.should.equal(1);
-		// });
-
-		// it('should return x0:2', function () {
-		//  col.getTokenValue(':n[2]').x0.should.equal(2);
-		// });
-
-		// it('should return x1:0', function () {
-		//  col.getTokenValue(':n[2]').x1.should.equal(0);
-		// });
-
-		// it('should return for lth values', function () {
-		//  col.getTokenValue(':l[2x+1]').should.eql({
-		//      type: 'l',
-		//      x0: 1,
-		//      x1: 2
-		//  });
-		// });
-
-		// it('should return for lth with not x0', function () {
-		//  col.getTokenValue(':l[2x]').should.eql({
-		//      type: 'l',
-		//      x0: 0,
-		//      x1: 2
-		//  });
-		// });
+		it('should return for lth with not x0', function () {
+			col.getTokenValue(':l[2x]').should.eql({
+				type: 'l',
+				x0: 0,
+				x1: 2
+			});
+		});
 
 		// it('should return for lth with no x1', function () {
-		//  col.getTokenValue(':l[2]').should.eql({
-		//      type: 'l',
-		//      x0: 2,
-		//      x1: 0
-		//  });
+		//     col.getTokenValue(':l[2]').should.eql({
+		//         type: 'l',
+		//         x0: 2,
+		//         x1: 0
+		//     });
 		// });
 	});
 
