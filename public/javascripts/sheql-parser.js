@@ -22,5 +22,20 @@ var Sheql = (function () {
 		return returnValue;
 	};
 
+	_proto.colon_tokenizer = function (str) {
+		var returnValue = [];
+		var tmpStr = "";
+		_.each(str, function (i) {
+			if (i === ':') {
+				returnValue.push(tmpStr);
+				tmpStr = ':';
+			} else {
+				tmpStr += i;
+			}
+		});
+		returnValue.push(tmpStr);
+		return returnValue;
+	};
+
 	return Sheql;
 })();

@@ -32,13 +32,17 @@ describe('SHEQL', function () {
 		});
 	});
 
-	// describe('colon_tokenizer()', function () {
-	//  it('should exist', function () {
-	//      should.exist(sql.colon_tokenizer);
-	//  });
+	describe('colon_tokenizer()', function () {
+		it('should exist', function () {
+			should.exist(sql.colon_tokenizer);
+		});
 
-	//  it('should return tokens on . operator', function () {
-	//      sql.colon_tokenizer('d:n[100]').should.eql(['d', 'n[100]']);
-	//  });
-	// });
+		it('should return tokens on . operator', function () {
+			sql.colon_tokenizer('d:n[100]').should.eql(['d', ':n[100]']);
+		});
+
+		it('should return tokens on multi : operator', function () {
+			sql.colon_tokenizer('d:n[100]:n[2n]').should.eql(['d', ':n[100]', ':n[2n]']);
+		});
+	});
 });
