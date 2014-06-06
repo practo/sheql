@@ -72,13 +72,13 @@ describe('ColonFilter', function () {
 			});
 		});
 
-		// it('should return for lth with no x1', function () {
-		//     col.getTokenValue(':l[2]').should.eql({
-		//         type: 'l',
-		//         x0: 2,
-		//         x1: 0
-		//     });
-		// });
+        it('should return for lth with no x1', function () {
+            col.getTokenValue(':l[2]').should.eql({
+                type: 'l',
+                x0: 2,
+                x1: 0
+            });
+        });
 	});
 
 	describe('getFilterType(token)', function () {
