@@ -16,6 +16,7 @@ module.exports = function (config) {
 			'public/javascripts/sheql-*.js',
 			'public/bower_components/underscore/underscore.js',
 			'public/bower_components/momentjs/moment.js',
+			'public/bower_components/moment-range/lib/moment-range.js',
 			'test/*.js'
 		],
 

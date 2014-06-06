@@ -12,21 +12,45 @@ describe('SelectedRange', function () {
 		should.exist(moment);
 	});
 
-	// describe('getMonths()', function () {
-	// 	it('should exist', function () {
-	// 		should.exist(sr.getMonths);
-	// 	});
-	// });
+	describe('getMonths()', function () {
+		beforeEach(function () {
+			sr.init('2001-01-01', '2002-01-01');
+		});
+
+		it('should exist', function () {
+			should.exist(sr.getMonths);
+		});
+
+		it('should add 13 getMonths', function () {
+			sr.getMonths()._result.length.should.equal(13);
+		});
+	});
 
 	describe('init(startDate, endDate)', function () {
 		it('should exist', function () {
 			should.exist(sr.init);
 		});
+
 	});
 	describe('getYears()', function () {
+		beforeEach(function () {
+			sr.init('2001-01-01', '2005-01-01');
+		});
+
 		it('should exist', function () {
 			should.exist(sr.getYears);
 		});
+
+		it('should add 5 years', function () {
+			sr.getYears();
+			sr._result.length.should.equal(5);
+		});
+
+		it('should add type as years', function () {
+			sr.getYears();
+			sr._result[0].type.should.equal('years');
+		});
+
 	});
 
 	// describe('getWeeks()', function () {
