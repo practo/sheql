@@ -40,7 +40,6 @@ var DotFilter = (function () {
 		switch (filterType) {
 		case 'yearType':
 			return 'leap';
-
 		case 'monthName':
 			return token.replace('.', '');
 		case 'monthSize':
