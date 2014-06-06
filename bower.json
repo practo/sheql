@@ -1,0 +1,17 @@
+{
+  "name": "sheql",
+  "version": "0.0.0",
+  "homepage": "https://github.com/practo/sheql",
+  "authors": [
+    "Tushar Mathur <tusharmath@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
