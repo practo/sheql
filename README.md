@@ -6,9 +6,13 @@ ELEMENTS y, m, w, d
 
 CLASSES
     y.leap
+
     m.jan, .feb ...., .31d, 30d, 28d, 29d
+
     w
+
     d.sat.mon .10, .11, .23
+
     precedence: LEFT -> RIGHT
 
 Selectors for Date manipulation
@@ -135,5 +139,5 @@ m d.sat.10
 
 ```css
 m d.mon:n[3]:n[n+1,n+15](2) //NOT SUPPORTED AS OF NOW
-```
 m d.mon:n[3]~d:n[n+15](3)   //NOT SUPPORTED
+```
