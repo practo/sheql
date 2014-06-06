@@ -1,6 +1,6 @@
 var Lexer = (function () {
 
-	function Lexer() {}
+    function Lexer() {}
 	var _proto = Lexer.prototype;
 
 	_proto.tokenizer = function (str) {
