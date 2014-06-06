@@ -1,5 +1,13 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+	div.container
+		div.row.sheql-head
+			div.logo-block.col-xs-12
+				img(src='/images/scheql.png')
+		form#sheql-querybox.row
+			div.col-xs-12
+				input#query.form-control(type='text', placeholder='scheQL to execute')
+		div.row
+			div#fc-container.col-xs-12
+	script(src='/helper.js')
