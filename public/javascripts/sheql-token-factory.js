@@ -15,6 +15,7 @@ var TokenFactory = (function () {
 	};
 
 	_proto.getTokenType = function (token) {
+
 		if (token.match(/^(y|m|w|d)$/)) {
 			return TAG;
 		}
@@ -29,7 +30,12 @@ var TokenFactory = (function () {
 		return false;
 	};
 
-	_proto.instantiate = function (token) {};
+	_proto.instantiate = function (token) {
+		var tokenType = this.getTokenType(token);
+		var tokenInstance = new this.tokenConstructorCollection[tokenType]();
+		tokenInstance.init(token, tokenType);
+		return tokenInstance;
+	};
 
 	return TokenFactory;
 })();
