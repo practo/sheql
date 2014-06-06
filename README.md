@@ -2,9 +2,10 @@ SHEQL RULES
 ===
 
 
-ELEMENTS y, m, w, d
+**ELEMENTS** ``` y, m, w, d ```
 
-CLASSES
+**CLASSES**
+
     y.leap
 
     m.jan, .feb ...., .31d, 30d, 28d, 29d
@@ -15,7 +16,7 @@ CLASSES
 
     precedence: LEFT -> RIGHT
 
-Selectors for Date manipulation
+***Selectors for Date manipulation***
 
 **Yearly repeated on the 45th day**
 
