@@ -1,3 +1,9 @@
+1. More powerful than google cal
+2. Schemaless/No DB No Migrations with upgrades
+3. Single update to multi events
+4. Platform independent
+5. ZERO infra
+
 SHEQL RULES
 ===
 
