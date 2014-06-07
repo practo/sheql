@@ -1,11 +1,17 @@
-1. More powerful than google cal
-2. Schemaless/No DB No Migrations with upgrades
-3. Single update to multi events
-4. Platform independent
-5. ZERO infra
+#Tools
+1. Javascript
+2. Nodejs/Express
+3. Karma Unit testing - TDD
 
-SHEQL RULES
-===
+#Features
+
+1. Far More powerful than google cal.
+2. Schemaless Storage.
+3. Single update to repeated events.
+4. Platform independent.
+5. ZERO infrastructure.
+
+#Rules
 
 
 **ELEMENTS** ``` y, m, w, d ```
