@@ -73,17 +73,17 @@ describe('Main', function () {
 	});
 
 	describe('_colonFilter()', function () {
-		it('should filterout elements', function () {
-			var elementCollection = [1, 2, 3, 4, 5, 6];
-			main._colonFilter(elementCollection, 'n', 0, 2)
-				.should.eql([1, 3, 5]);
-		});
+		// it('should filterout elements', function () {
+		// 	var elementCollection = [1, 2, 3, 4, 5, 6];
+		// 	main._colonFilter(elementCollection, 'n', 0, 2, 'a')
+		// 		.should.eql([1, 3, 5]);
+		// });
 
-		it('should filterout elements with starting index', function () {
-			var elementCollection = [1, 2, 3, 4, 5, 6];
-			main._colonFilter(elementCollection, 'n', 2, 2)
-				.should.eql([3, 5]);
-		});
+		// it('should filterout elements with starting index', function () {
+		// 	var elementCollection = [1, 2, 3, 4, 5, 6];
+		// 	main._colonFilter(elementCollection, 'n', 2, 2, 'a')
+		// 		.should.eql([3, 5]);
+		// });
 	});
 
 	describe('_dotFilter()', function () {
@@ -133,8 +133,15 @@ describe('Main', function () {
 
 		it('should parse sql', function () {
 			main._parseTokens({
-				y: {}
-			}, '2010-01-01', '2010-01-03').length.should.equal(3);
+				y: ['.leap']
+			}, '2012-01-01', '2013-01-03').length.should.equal(366);
+		});
+
+		it('should parse colon sql', function () {
+			main._parseTokens({
+				y: ['.leap'],
+				d: [':n[2x]']
+			}, '2012-01-01', '2013-01-03').length.should.equal(183);
 		});
 	});
 });

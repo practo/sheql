@@ -51,46 +51,97 @@ var Main = (function () {
 		};
 	};
 
+	_proto._dayFilter = function (elementCollection, filterKey) {
+		var filteredCollection = [];
+		_.each(elementCollection, function (el) {
+			filteredCollection.push(_.filter(el, function (dt) {
+				return ('.' + dt.getDayName()) === filterKey;
+			}));
+		});
+		return filteredCollection;
+	};
+
+	_proto._dateFilter = function (elementCollection, iType, x0, x1) {
+		var filteredCollection = [];
+		_.each(elementCollection, function (el) {
+			filteredCollection.push(_.filter(el, function (dt, key) {
+				var temp = key - x0;
+				return ((temp + 1) % x1) === 0;
+			}));
+		});
+		return filteredCollection;
+	};
+
 	_proto._dotFilter = function (elementCollection, filterKey) {
 		return _.filter(elementCollection, function (e) {
 			return _.contains(e.props, filterKey);
 		});
 
 	};
-	_proto._colonFilter = function (elementCollection, iType, x0, x1) {
-		var filteredCollection = [];
-
-		_.times(elementCollection.length, function (x) {
-			var val = (x1 * x + x0);
-			if (val > -1 && val < elementCollection.length) {
-				filteredCollection.push(elementCollection[val]);
-			}
+	_proto._colonFilter = function (elementCollection, iType, x0, x1, filterKey) {
+		return _.filter(elementCollection, function (c) {
+			temp = c.indices[filterKey] - x0;
+			return ((temp + 1) % x1) === 0;
 		});
-		return filteredCollection;
 	};
 
-	_proto._yearOperations = function (dateCollection) {
+	_proto._yearOperations = function (dateCollection, yTokens) {
 		dateCollection = this.tree
 			.yearDateCollectionBuilder(dateCollection);
+		_.each(yTokens, function (filtertoken) {
+			if (filtertoken[0] === ':') {
+				var colonVal = this._colonValue(filtertoken);
+				dateCollection = this
+					._colonFilter(dateCollection, colonVal.type, colonVal.x0, colonVal.x1, 'a');
+			} else if (filtertoken[0] === '.') {
+				dateCollection = this._dotFilter(dateCollection, filtertoken);
+			}
+		}, this);
 		return dateCollection;
 	};
 
-	_proto._monthOperations = function (dateCollection, isArray) {
+	_proto._monthOperations = function (dateCollection, mTokens, isArray) {
 		dateCollection = this.tree
 			.monthDateCollectionBuilder(dateCollection, isArray);
+		_.each(mTokens, function (filtertoken) {
+			if (filtertoken[0] === ':') {
+				var colonVal = this._colonValue(filtertoken);
+				dateCollection = this
+					._colonFilter(dateCollection, colonVal.type, colonVal.x0, colonVal.x1, isArray ? 'a' : 'm');
+			} else if (filtertoken[0] === '.') {
+				dateCollection = this._dotFilter(dateCollection, filtertoken);
+			}
+		}, this);
 		return dateCollection;
 	};
 
-	_proto._weekOperations = function (dateCollection, parentTag) {
+	_proto._weekOperations = function (dateCollection, wTokens, parentTag) {
 		dateCollection = this.tree
 			.weekDateCollectionBuilder(dateCollection, parentTag);
+		_.each(wTokens, function (filtertoken) {
+			if (filtertoken[0] === ':') {
+				var colonVal = this._colonValue(filtertoken);
+				dateCollection = this
+					._colonFilter(dateCollection, colonVal.type, colonVal.x0, colonVal.x1, parentTag ? 'a' : parentTag);
+			} else if (filtertoken[0] === '.') {
+				dateCollection = this._dotFilter(dateCollection, filtertoken);
+			}
+		}, this);
 		return dateCollection;
 	};
 
-	_proto._dateOperations = function (dateCollection, isArray) {
-		console.log('Is Array', isArray);
+	_proto._dateOperations = function (dateCollection, dTokens, isArray) {
 		dateCollection = this.tree
 			.dateDateCollectionBuilder(dateCollection, isArray);
+		_.each(dTokens, function (filtertoken) {
+			if (filtertoken[0] === ':') {
+				var colonVal = this._colonValue(filtertoken);
+				dateCollection = this
+					._dateFilter(dateCollection, colonVal.type, colonVal.x0, colonVal.x1);
+			} else if (filtertoken[0] === '.') {
+				dateCollection = this._dayFilter(dateCollection, filtertoken);
+			}
+		}, this);
 		return dateCollection;
 	};
 
@@ -98,43 +149,44 @@ var Main = (function () {
 		var dateCollection = this._buildDateRangeCollection(startDate, endDate);
 		if (tokens.y) {
 			//Perform operations for Y
-			dateCollection = this._yearOperations(dateCollection);
+			dateCollection = this._yearOperations(dateCollection, tokens.y);
 		}
+
 		if (tokens.m) {
 			if (tokens.y) {
-				dateCollection = this._monthOperations(dateCollection);
+				dateCollection = this._monthOperations(dateCollection, tokens.m);
 			} else {
-				dateCollection = this._monthOperations(dateCollection, true);
+				dateCollection = this._monthOperations(dateCollection, tokens.m, true);
 			}
 			//Perform operations for M
 		}
 		if (tokens.w) {
 			if (tokens.m) {
-				dateCollection = this._weekOperations(dateCollection, 'm');
+				dateCollection = this._weekOperations(dateCollection, tokens.w, 'm');
 			} else if (tokens.y) {
-				dateCollection = this._weekOperations(dateCollection, 'y');
+				dateCollection = this._weekOperations(dateCollection, tokens.w, 'y');
 			} else {
-				dateCollection = this._weekOperations(dateCollection);
+				dateCollection = this._weekOperations(dateCollection, tokens.w);
 			}
 			//Perform operations for w
 		}
-		// console.log(dateCollection);
+		var tempResults;
 		if (tokens.d) {
 			if (tokens.m || tokens.y || tokens.w) {
-				dateCollection = this._dateOperations(dateCollection);
+				dateCollection = this._dateOperations(dateCollection, tokens.d);
 			} else {
-				dateCollection = this._dateOperations(dateCollection, true);
+				dateCollection = this._dateOperations(dateCollection, tokens.d, true);
 			}
+			tempResults = dateCollection;
 			//Perform operations for d
 		} else {
-			var result = [];
-			var temp = _.pluck(dateCollection, 'dates');
-			_.each(temp, function (arr) {
-				result = _.union(result, arr);
-			});
-			dateCollection = result;
+			tempResults = _.pluck(dateCollection, 'dates');
 		}
-
+		var result = [];
+		_.each(tempResults, function (arr) {
+			result = _.union(result, arr);
+		});
+		dateCollection = result;
 		return dateCollection;
 
 	};
