@@ -4,6 +4,13 @@ var TreeBuilder = (function () {
 
 	var _proto = TreeBuilder.prototype;
 
+	_proto.dateDateCollectionBuilder = function (dateCollection, isArray) {
+		if (!isArray) {
+			return _.pluck(dateCollection, 'dates');
+		}
+		return [dateCollection];
+	};
+
 	_proto.weekDateCollectionBuilder = function (dateCollection, parentTag) {
 		var tmpCollection,
 			yearIndex = 0,
