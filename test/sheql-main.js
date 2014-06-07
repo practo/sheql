@@ -8,7 +8,7 @@ describe('Main', function () {
 	});
 
 	it('expectation', function () {
-		//EMPTY TEST
+		should.exist(sinon);
 	});
 
 	describe('buildDateRangeCollection()', function () {
@@ -126,6 +126,15 @@ describe('Main', function () {
 				x0: 2,
 				x1: 0
 			});
+		});
+	});
+
+	describe('_parseTokens()', function () {
+
+		it('should parse sql', function () {
+			main._parseTokens({
+				y: {}
+			}, '2010-01-01', '2010-01-03').length.should.equal(3);
 		});
 	});
 });

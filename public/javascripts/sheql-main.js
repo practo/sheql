@@ -69,23 +69,73 @@ var Main = (function () {
 		return filteredCollection;
 	};
 
-	_proto._yearOperations = function () {
-
+	_proto._yearOperations = function (dateCollection) {
+		dateCollection = this.tree
+			.yearDateCollectionBuilder(dateCollection);
+		return dateCollection;
 	};
 
-	_proto._parseTokens = function (tokens) {
+	_proto._monthOperations = function (dateCollection, isArray) {
+		dateCollection = this.tree
+			.monthDateCollectionBuilder(dateCollection, isArray);
+		return dateCollection;
+	};
+
+	_proto._weekOperations = function (dateCollection, parentTag) {
+		dateCollection = this.tree
+			.weekDateCollectionBuilder(dateCollection, parentTag);
+		return dateCollection;
+	};
+
+	_proto._dateOperations = function (dateCollection, isArray) {
+		console.log('Is Array', isArray);
+		dateCollection = this.tree
+			.dateDateCollectionBuilder(dateCollection, isArray);
+		return dateCollection;
+	};
+
+	_proto._parseTokens = function (tokens, startDate, endDate) {
+		var dateCollection = this._buildDateRangeCollection(startDate, endDate);
 		if (tokens.y) {
 			//Perform operations for Y
+			dateCollection = this._yearOperations(dateCollection);
 		}
 		if (tokens.m) {
+			if (tokens.y) {
+				dateCollection = this._monthOperations(dateCollection);
+			} else {
+				dateCollection = this._monthOperations(dateCollection, true);
+			}
 			//Perform operations for M
 		}
 		if (tokens.w) {
+			if (tokens.m) {
+				dateCollection = this._weekOperations(dateCollection, 'm');
+			} else if (tokens.y) {
+				dateCollection = this._weekOperations(dateCollection, 'y');
+			} else {
+				dateCollection = this._weekOperations(dateCollection);
+			}
 			//Perform operations for w
 		}
+		// console.log(dateCollection);
 		if (tokens.d) {
+			if (tokens.m || tokens.y || tokens.w) {
+				dateCollection = this._dateOperations(dateCollection);
+			} else {
+				dateCollection = this._dateOperations(dateCollection, true);
+			}
 			//Perform operations for d
+		} else {
+			var result = [];
+			var temp = _.pluck(dateCollection, 'dates');
+			_.each(temp, function (arr) {
+				result = _.union(result, arr);
+			});
+			dateCollection = result;
 		}
+
+		return dateCollection;
 
 	};
 

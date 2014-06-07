@@ -17,6 +17,7 @@ module.exports = function (config) {
 			'public/bower_components/underscore/underscore.js',
 			'public/bower_components/momentjs/moment.js',
 			'public/bower_components/twix/bin/twix.js',
+			'public/bower_components/sinon/lib/sinon.js',
 			'public/bower_components/moment-range/lib/moment-range.js',
 			'test/*.js'
 		],
