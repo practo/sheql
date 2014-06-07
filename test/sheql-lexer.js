@@ -8,6 +8,21 @@ describe('Lexer', function () {
 		should.exist(lxr);
 	});
 
+	describe('tokenizerPart2(tokenCollection)', function () {
+		it('should exist', function () {
+			should.exist(lxr.tokenizerPart2);
+		});
+
+		it('should group tokens by tags', function () {
+			lxr.tokenizerPart2('m.jan:n[2x] w:n[2] d.mon')
+				.should.eql({
+					m: ['.jan', ':n[2x]'],
+					w: [':n[2]'],
+					d: ['.mon']
+				});
+		});
+	});
+
 	describe('tokenizer', function () {
 		it('should exist', function () {
 			should.exist(lxr.tokenizer);
