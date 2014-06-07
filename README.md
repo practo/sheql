@@ -1,3 +1,5 @@
+![alt text](https://raw.githubusercontent.com/practo/sheql/master/public/images/scheql.png)
+
 #Tools
 1. Javascript
 2. Nodejs/Express
