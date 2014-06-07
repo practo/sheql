@@ -10,6 +10,12 @@ var TreeBuilder = (function () {
 
 	var _proto = TreeBuilder.prototype;
 
+	_proto.groupByMonth = function (dateCollection) {
+		return _.groupBy(dateCollection, function (d) {
+			return d.getMonth();
+		});
+	};
+
 	_proto.groupByYear = function (dateCollection) {
 		return _.groupBy(dateCollection, function (d) {
 			return d.getFullYear();

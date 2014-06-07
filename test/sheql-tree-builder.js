@@ -18,6 +18,20 @@ describe('TreeBuilder', function () {
 		});
 	});
 
+	describe('groupByMonth()', function () {
+		it('should exist()', function () {
+			should.exist(tb.groupByMonth);
+		});
+
+		it('should group by year', function () {
+			var d1 = new Date(2010, 1, 1);
+			var d2 = new Date(2012, 2, 1);
+			var d3 = new Date(2010, 1, 1);
+			tb.groupByMonth([d1, d2, d3])['1'].length.should.equal(2);
+			tb.groupByMonth([d1, d2, d3])['2'].length.should.equal(1);
+		});
+	});
+
 	describe('groupByWeek()', function () {
 		it('should exist', function () {
 			should.exist(tb.groupByWeek);
