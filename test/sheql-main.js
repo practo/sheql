@@ -20,4 +20,8 @@ describe('Main', function () {
 		});
 	});
 
+	describe('_getTokens()', function () {
+
+	});
+
 });

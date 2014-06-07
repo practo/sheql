@@ -8,13 +8,13 @@ describe('Lexer', function () {
 		should.exist(lxr);
 	});
 
-	describe('tokenizerPart2(tokenCollection)', function () {
+	describe('extractTokens(tokenCollection)', function () {
 		it('should exist', function () {
-			should.exist(lxr.tokenizerPart2);
+			should.exist(lxr.extractTokens);
 		});
 
 		it('should group tokens by tags', function () {
-			lxr.tokenizerPart2('m.jan:n[2x] w:n[2] d.mon')
+			lxr.extractTokens('m.jan:n[2x] w:n[2] d.mon')
 				.should.eql({
 					m: ['.jan', ':n[2x]'],
 					w: [':n[2]'],
@@ -23,13 +23,13 @@ describe('Lexer', function () {
 		});
 	});
 
-	describe('tokenizer', function () {
+	describe('_SplitTokens', function () {
 		it('should exist', function () {
-			should.exist(lxr.tokenizer);
+			should.exist(lxr._SplitTokens);
 		});
 
 		it('should tokenize completely', function () {
-			lxr.tokenizer('m:n[2x].jan w:n[2] d.mon').should.eql([
+			lxr._SplitTokens('m:n[2x].jan w:n[2] d.mon').should.eql([
 				'm',
 				':n[2x]',
 				'.jan',
@@ -41,7 +41,7 @@ describe('Lexer', function () {
 		});
 
 		it('should tokenize colon in end', function () {
-			lxr.tokenizer('m.jan:n[2x] w:n[2] d.mon').should.eql([
+			lxr._SplitTokens('m.jan:n[2x] w:n[2] d.mon').should.eql([
 				'm',
 				'.jan',
 				':n[2x]',

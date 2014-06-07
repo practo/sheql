@@ -3,8 +3,8 @@ var Lexer = (function () {
 	function Lexer() {}
 	var _proto = Lexer.prototype;
 
-	_proto.tokenizerPart2 = function (str) {
-		var tokens = this.tokenizer(str);
+	_proto.extractTokens = function (str) {
+		var tokens = this._SplitTokens(str);
 		var lastToken;
 		var groupedTokens = {};
 		_.each(tokens, function (token) {
@@ -20,7 +20,7 @@ var Lexer = (function () {
 
 	};
 
-	_proto.tokenizer = function (str) {
+	_proto._SplitTokens = function (str) {
 		var returnValue = [];
 		var tmpStr = "";
 		_.each(str, function (i) {

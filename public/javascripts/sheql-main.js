@@ -11,6 +11,5 @@ var Main = (function () {
 		}
 		return dateCollection;
 	};
-
 	return Main;
 })();
