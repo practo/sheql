@@ -72,6 +72,36 @@ describe('Main', function () {
 		});
 	});
 
+	describe('_colonFilter()', function () {
+		it('should filterout elements', function () {
+			var elementCollection = [1, 2, 3, 4, 5, 6];
+			main._colonFilter(elementCollection, 'n', 0, 2)
+				.should.eql([1, 3, 5]);
+		});
+
+		it('should filterout elements with starting index', function () {
+			var elementCollection = [1, 2, 3, 4, 5, 6];
+			main._colonFilter(elementCollection, 'n', 2, 2)
+				.should.eql([3, 5]);
+		});
+	});
+
+	describe('_dotFilter()', function () {
+		it('should return true', function () {
+			main._dotFilter([{
+				props: ['.xxx']
+			}], '.xxx').should.eql([{
+				props: ['.xxx']
+			}]);
+		});
+
+		it('should return false', function () {
+			main._dotFilter([{
+				props: ['.xxy']
+			}], '.xxx').should.eql([]);
+		});
+	});
+
 	describe('_colonValue(token)', function () {
 
 		it('should return for lth values', function () {

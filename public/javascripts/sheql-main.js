@@ -51,8 +51,23 @@ var Main = (function () {
 		};
 	};
 
-	_proto._dotFilter = function () {};
-	_proto._colonFilter = function () {};
+	_proto._dotFilter = function (elementCollection, filterKey) {
+		return _.filter(elementCollection, function (e) {
+			return _.contains(e.props, filterKey);
+		});
+
+	};
+	_proto._colonFilter = function (elementCollection, iType, x0, x1) {
+		var filteredCollection = [];
+
+		_.times(elementCollection.length, function (x) {
+			var val = (x1 * x + x0);
+			if (val > -1 && val < elementCollection.length) {
+				filteredCollection.push(elementCollection[val]);
+			}
+		});
+		return filteredCollection;
+	};
 
 	_proto._yearOperations = function () {
 
