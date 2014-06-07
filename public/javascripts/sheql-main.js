@@ -206,6 +206,11 @@ var Main = (function () {
 		return this.lexer.extractTokens(str);
 	};
 
+	_proto.execute = function (str, startDate, endDate) {
+		var tokens = this._getTokens(str);
+		return this._parseTokens(tokens, startDate, endDate);
+	};
+
 	return Main;
 
 })();
