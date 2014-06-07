@@ -107,7 +107,7 @@ var Main = (function () {
 			if (filtertoken[0] === ':') {
 				var colonVal = this._colonValue(filtertoken);
 				dateCollection = this
-					._colonFilter(dateCollection, colonVal.type, colonVal.x0, colonVal.x1, isArray ? 'a' : 'm');
+					._colonFilter(dateCollection, colonVal.type, colonVal.x0, colonVal.x1, isArray ? 'a' : 'y');
 			} else if (filtertoken[0] === '.') {
 				dateCollection = this._dotFilter(dateCollection, filtertoken);
 			}
@@ -122,7 +122,7 @@ var Main = (function () {
 			if (filtertoken[0] === ':') {
 				var colonVal = this._colonValue(filtertoken);
 				dateCollection = this
-					._colonFilter(dateCollection, colonVal.type, colonVal.x0, colonVal.x1, parentTag ? 'a' : parentTag);
+					._colonFilter(dateCollection, colonVal.type, colonVal.x0, colonVal.x1, parentTag ? parentTag : 'a');
 			} else if (filtertoken[0] === '.') {
 				dateCollection = this._dotFilter(dateCollection, filtertoken);
 			}
