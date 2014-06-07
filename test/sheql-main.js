@@ -1,7 +1,9 @@
 describe('Main', function () {
-	var main;
+	var main, lxr;
 	beforeEach(function () {
 		main = new Main();
+		lxr = new Lexer();
+		main._init(lxr);
 	});
 
 	it('expectation', function () {

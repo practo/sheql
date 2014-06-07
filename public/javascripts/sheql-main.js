@@ -1,6 +1,12 @@
 var Main = (function () {
+
 	function Main() {}
 	var _proto = Main.prototype;
+
+	_proto._init = function (lexer) {
+		this.lexer = lexer;
+	};
+
 	_proto._buildDateRangeCollection = function (_startDate, _endDate) {
 		var dateCollection = [];
 		var startDate = moment(_startDate, 'YYYY-MM-DD');
@@ -11,5 +17,11 @@ var Main = (function () {
 		}
 		return dateCollection;
 	};
+
+	_proto._getTokens = function (str) {
+		return this.lexer.extractTokens(str);
+	};
+
 	return Main;
+
 })();
