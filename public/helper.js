@@ -28,7 +28,7 @@ $(function () {
 
 		var m = new Main();
 		m._init(new Lexer(), new TreeBuilder());
-		var dates = m.execute($('input[name="query"]').val(), viewStartDate, viewEndDate);
+		var dates = m.execute($('#query').val(), viewStartDate, viewEndDate);
 
 		renderEvents(dates);
 	});

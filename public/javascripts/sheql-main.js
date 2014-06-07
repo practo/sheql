@@ -193,9 +193,9 @@ var Main = (function () {
 
 	_proto._buildDateRangeCollection = function (_startDate, _endDate) {
 		var dateCollection = [];
-		var startDate = moment(_startDate, 'YYYY-MM-DD');
-		var endDate = moment(_endDate, 'YYYY-MM-DD');
-		var iter = moment(startDate).twix(endDate).iterate("days");
+		// var startDate = moment(_startDate, 'YYYY-MM-DD');
+		// var endDate = moment(_endDate, 'YYYY-MM-DD');
+		var iter = moment(_startDate).twix(_endDate).iterate("days");
 		while (iter.hasNext()) {
 			dateCollection.push(iter.next().toDate());
 		}
