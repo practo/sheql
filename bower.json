@@ -19,6 +19,7 @@
     "bootstrap": "~3.1.1",
     "momentjs": "~2.6.0",
     "moment-range": "~1.0.2",
-    "twix": "~0.5.0"
+    "twix": "~0.5.0",
+    "underscore": "~1.6.0"
   }
 }
