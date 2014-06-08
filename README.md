@@ -13,6 +13,8 @@
 4. Platform independent.
 5. ZERO infrastructure.
 
+[Demo](http://sheql.herokuapp.com/)
+
 #Rules
 
 
