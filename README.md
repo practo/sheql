@@ -1,10 +1,5 @@
 ![alt text](https://raw.githubusercontent.com/practo/sheql/master/public/images/scheql.png)
 
-#Tools
-1. Javascript
-2. Nodejs/Express
-3. Karma Unit testing - TDD
-
 #Features
 
 1. Far More powerful than google cal.
@@ -127,17 +122,17 @@ y m:n[-n+3] d:n[n+1]:n[-n+1]
 **every month first sat after 12th**
 
 ```css
-m d.sat:n[n+12, 1]    /*NOT SUPPORTED AS OF NOW*/
+m d:n[x+12]~d.sat[1]    /*NOT SUPPORTED AS OF NOW*/
 ```
 **every month alternate days after 12th**
 
 ```css
-m d:n[n+12, 2n]   /*NOT SUPPORTED AS OF NOW*/
+m d:n[x+12]~d.sat[2x]   /*NOT SUPPORTED AS OF NOW*/
 ```
 **4th april 2016**
 
 ```css
-_040420160800;        /*NOT SUPPORTED AS OF NOW*/
+_04032016;        /*NOT SUPPORTED AS OF NOW*/
 ```
 **31st day is tuesday**
 
