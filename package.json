@@ -1,11 +1,27 @@
 {
-	"name": "sheql",
-	"version": "0.0.1",
-	"private": true,
-	"dependencies": {
-
-	},
-	"devDependencies": {
-		"mocha": "^1.20.1"
-	}
+  "name": "sheql",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "^1.20.1"
+  },
+  "description": "![alt text](https://raw.githubusercontent.com/practo/sheql/master/public/images/scheql.png)",
+  "main": "app.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "mocha test/test.*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tusharmath/sheql.git"
+  },
+  "author": "Tushar Mathur <tusharmath@gmail.com> (http://tusharm.com/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tusharmath/sheql/issues"
+  },
+  "homepage": "https://github.com/tusharmath/sheql"
 }
