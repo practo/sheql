@@ -88,27 +88,57 @@ describe('Lexer', function () {
 		});
 
 		it('should determine the type for n[x+1]', function () {
-			lxr._x1Extractor('n[x+1]').should.eql(1);
+			lxr._x1Extractor('n[x+1]').should.equal(1);
 		});
 
 		it('should determine the type for n[2x+1]', function () {
-			lxr._x1Extractor('n[2x+1]').should.eql(2);
+			lxr._x1Extractor('n[2x+1]').should.equal(2);
 		});
 
 		it('should determine the type for n[2x]', function () {
-			lxr._x1Extractor('n[2x]').should.eql(2);
+			lxr._x1Extractor('n[2x]').should.equal(2);
 		});
 
 		it('should determine the type for n[2]', function () {
-			lxr._x1Extractor('n[2]').should.eql(0);
+			lxr._x1Extractor('n[2]').should.equal(0);
 		});
 
 		it('should determine the type for n[-2]', function () {
-			lxr._x1Extractor('n[-2]').should.eql(0);
+			lxr._x1Extractor('n[-2]').should.equal(0);
 		});
 
 		it('should determine the type for n[-2x]', function () {
-			lxr._x1Extractor('n[-2x]').should.eql(-2);
+			lxr._x1Extractor('n[-2x]').should.equal(-2);
+		});
+	});
+
+	describe('_x0Extractor()', function () {
+		it('should exist', function () {
+			should.exist(lxr._x0Extractor);
+		});
+
+		it('should determine the type for n[x+1]', function () {
+			lxr._x0Extractor('n[x+1]').should.equal(1);
+		});
+
+		it('should determine the type for n[2x+1]', function () {
+			lxr._x0Extractor('n[2x+1]').should.equal(1);
+		});
+
+		it('should determine the type for n[2x]', function () {
+			lxr._x0Extractor('n[2x]').should.equal(0);
+		});
+
+		it('should determine the type for n[2]', function () {
+			lxr._x0Extractor('n[2]').should.equal(2);
+		});
+
+		it('should determine the type for n[-2]', function () {
+			lxr._x0Extractor('n[-2]').should.equal(-2);
+		});
+
+		it('should determine the type for n[-2x]', function () {
+			lxr._x0Extractor('l[-2x]').should.equal(0);
 		});
 	});
 
