@@ -82,6 +82,44 @@ describe('Lexer', function () {
 
 	});
 
+	describe('_x1Extractor()', function () {
+		it('should exist', function () {
+			should.exist(lxr._x1Extractor);
+		});
+
+		it('should determine the type for n[x+1]', function () {
+			lxr._x1Extractor('n[x+1]').should.eql(1);
+		});
+
+		it('should determine the type for n[2x+1]', function () {
+			lxr._x1Extractor('n[2x+1]').should.eql(2);
+		});
+
+		it('should determine the type for n[2x]', function () {
+			lxr._x1Extractor('n[2x]').should.eql(2);
+		});
+
+		it('should determine the type for n[2]', function () {
+			lxr._x1Extractor('n[2]').should.eql(0);
+		});
+
+		it('should determine the type for n[-2]', function () {
+			lxr._x1Extractor('n[-2]').should.eql(0);
+		});
+
+		it('should determine the type for n[-2x]', function () {
+			lxr._x1Extractor('n[-2x]').should.eql(-2);
+		});
+	});
+
+	describe('_parseColonFilters()', function () {
+
+		it('should exist', function () {
+			should.exist(lxr._parseColonFilters);
+		});
+
+	});
+
 	describe('parser()', function () {
 
 		it('should have parse', function () {
