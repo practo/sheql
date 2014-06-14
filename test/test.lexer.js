@@ -169,6 +169,17 @@ describe('Lexer', function () {
 			should.exist(lxr.parser);
 		});
 
+		it('should return an ast', function () {
+			lxr.parser('y m d.sat').should.eql({
+				y: [],
+				m: [],
+				d: [{
+					filterType: '.',
+					filterOn: 'sat'
+				}]
+			});
+		});
+
 	});
 
 });
