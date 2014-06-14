@@ -148,6 +148,14 @@ describe('Lexer', function () {
 			should.exist(lxr._parseColonFilters);
 		});
 
+		it('should create sub tree for colon tokens', function () {
+			lxr._parseColonFilters('n[-4x-23]').should.eql({
+				from: 'n',
+				x0: -23,
+				x1: -4
+			});
+		});
+
 	});
 
 	describe('parser()', function () {
