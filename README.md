@@ -2,9 +2,9 @@
 
 #Features
 
-1. Far More powerful than google cal.
+1. Far More powerful than google calender.
 2. Schemaless Storage.
-3. Single update to repeated events.
+3. Single change to update repeated events.
 4. Platform independent.
 5. ZERO infrastructure.
 
