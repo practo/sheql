@@ -34,7 +34,12 @@ describe('Lexer', function () {
 				}],
 				m: [{
 					filterType: ':',
-					filterOn: 'n[x+1]'
+					filterOn: // 'n[x+1]'
+					{
+						from: 'n',
+						x0: 1,
+						x1: 1
+					}
 				}],
 				d: [{
 					filterType: '.',
