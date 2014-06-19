@@ -13,7 +13,7 @@ describe "getYears", ->
         getYears = require "../lib/getYears"
 
     after ->
-        delete require.cache[require.resolve "../lib/Lexer" ]
+        delete require.cache[require.resolve "../lib/getYears" ]
 
     it "should exist", ->
         should.exist yr
