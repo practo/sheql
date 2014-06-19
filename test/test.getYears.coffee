@@ -18,10 +18,18 @@ describe "getYears", ->
     it "should exist", ->
         should.exist yr
 
-    describe "fetch", ->
+    describe "yearCollection", ->
         it "should exist", ->
-            should.exist yr.fetch
+            should.exist yr.yearCollection
 
-        it "should return 4", ->
-            yr.fetch(dStart, dEnd).should.equal 4
+        it "should return a collection of 4 items", ->
+            yr.yearCollection(dStart, dEnd).length .should.equal 4
+
+        it "should attach type as year", ->
+            [year] = yr.yearCollection(dStart, dEnd)
+            year.type.should.equal 'year'
+
+        it "should attach value", ->
+            [year] = yr.yearCollection(dStart, dEnd)
+            year.value.should.equal 2016
 
