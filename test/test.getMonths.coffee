@@ -31,6 +31,7 @@ describe "getMonths", ->
             dEnd = new Date 2012, 1, 1
             mn.monthCollection(dStart, dEnd).should.equal 25
 
+
     describe "monthCollectionForYear", ->
         it "should exist", ->
             should.exist mn.monthCollectionForYear
@@ -41,3 +42,9 @@ describe "getMonths", ->
             mn.monthCollectionForYear(dStart, dEnd, 2011).should.equal 12
             mn.monthCollectionForYear(dStart, dEnd, 2010).should.equal 7
             mn.monthCollectionForYear(dStart, dEnd, 2012).should.equal 9
+
+    describe "monthSize", ->
+        it "should return month size", ->
+            mn.monthSize(2011, 0).should.equal 31
+            mn.monthSize(2011, 1).should.equal 28
+            mn.monthSize(2012, 1).should.equal 29

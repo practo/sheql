@@ -1,5 +1,16 @@
 module.exports = ->
+    monthNames = [
+        'jan', 'feb', 'mar',
+        'apr', 'may', 'jun',
+        'jul', 'aug', 'sep',
+        'oct', 'nov', 'dec'
+    ]
+
     obj = {}
+
+    obj.monthSize = (year, month) ->
+        d = new Date year, month+1, 0
+        d.getDate()
 
     obj.monthCollectionForYear = (startDate, endDate, year) ->
         startYear = startDate.getFullYear()
