@@ -38,7 +38,24 @@ module.exports = ->
         months -= 12 - endDate.getMonth() - 1
         months
 
-    obj.monthCollection = (startDate, count) ->
+    obj.monthCollectionForYear = (startDate, endDate, year)->
+
+        startYear = startDate.getFullYear()
+        endYear = endDate.getFullYear()
+
+        if startYear is year and endYear is year
+            return @monthCollection startDate, endDate
+
+        if startYear is year
+            return @monthCollection startDate, new Date year, 11, 31
+
+        if endYear is year
+            return @monthCollection new Date(year, 0, 1), endDate
+
+        return @monthCollection new Date(year, 0, 1), new Date(year, 11, 31)
+
+    obj.monthCollection = (startDate, endDate) ->
+        count = @monthCount startDate, endDate
         startMonth = startDate.getMonth()
         for i in [0...count]
             startDate.setMonth(startMonth+i)

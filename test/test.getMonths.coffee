@@ -43,20 +43,37 @@ describe "getMonths", ->
             mn.monthCountForYear(dStart, dEnd, 2010).should.equal 7
             mn.monthCountForYear(dStart, dEnd, 2012).should.equal 9
 
+    describe "monthCollectionForYear", ->
+        it "should exist", ->
+            should.exist mn.monthCollectionForYear
+
+        it "should return a collection", ->
+            dStart = new Date 2016, 4, 23
+            dEnd = new Date 2018, 3, 15
+
+            mn.monthCollectionForYear( dStart, dEnd, 2017).length.should.equal 12
+            mn.monthCollectionForYear( dStart, dEnd, 2016).length.should.equal 8
+
+
     describe "monthCollection", ->
+
         it "should.exist", ->
             should.exist mn.monthCollection
 
         it "should return a collection", ->
             dStart = new Date 2016, 0, 23
-            [m1, m2, m3] = mn.monthCollection dStart, 3
+            dEnd = new Date 2016, 3, 15
+
+            [m1, m2, m3] = mn.monthCollection dStart, dEnd
             m1.props.should.eql ['jan', '31d']
             m2.props.should.eql ['feb', '29d']
             m3.props.should.eql ['mar', '31d']
 
         it "should attach meta", ->
             dStart = new Date 2016, 0, 23
-            [m1] = mn.monthCollection dStart, 1
+            dEnd = new Date 2016, 3, 15
+
+            [m1] = mn.monthCollection dStart, dEnd
             m1.type.should.equal 'month'
             m1.value.should.equal 0
 
