@@ -33,3 +33,13 @@ describe "getYears", ->
             [year] = yr.yearCollection(dStart, dEnd)
             year.value.should.equal 2016
 
+        it "should attach value", ->
+            [year1, year2] = yr.yearCollection(dStart, dEnd)
+            year1.props[0].should.equal 'leap'
+            year2.props.should.eql []
+
+
+    describe "isLeapYear", ->
+        it "should work", ->
+            yr.isLeapYear(2012).should.be.true
+            yr.isLeapYear(2010).should.be.false
