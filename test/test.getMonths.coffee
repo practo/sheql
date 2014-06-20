@@ -22,5 +22,22 @@ describe "getMonths", ->
         it "should exist", ->
             should.exist mn.monthCollection
 
-        it "should return count", ->
+        it "should return count: 2", ->
             mn.monthCollection(dStart, dEnd).should.equal 2
+
+
+        it "should return count: 25", ->
+            dStart = new Date 2010, 1, 1
+            dEnd = new Date 2012, 1, 1
+            mn.monthCollection(dStart, dEnd).should.equal 25
+
+    describe "monthCollectionForYear", ->
+        it "should exist", ->
+            should.exist mn.monthCollectionForYear
+
+        it "should return monthCollection for a single year only", ->
+            dStart = new Date 2010, 5, 1
+            dEnd = new Date 2012, 8, 1
+            mn.monthCollectionForYear(dStart, dEnd, 2011).should.equal 12
+            mn.monthCollectionForYear(dStart, dEnd, 2010).should.equal 7
+            mn.monthCollectionForYear(dStart, dEnd, 2012).should.equal 9
