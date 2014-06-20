@@ -32,16 +32,16 @@ describe "getMonths", ->
             mn.monthCollection(dStart, dEnd).should.equal 25
 
 
-    describe "monthCollectionForYear", ->
+    describe "monthCountForYear", ->
         it "should exist", ->
-            should.exist mn.monthCollectionForYear
+            should.exist mn.monthCountForYear
 
         it "should return monthCollection for a single year only", ->
             dStart = new Date 2010, 5, 1
             dEnd = new Date 2012, 8, 1
-            mn.monthCollectionForYear(dStart, dEnd, 2011).should.equal 12
-            mn.monthCollectionForYear(dStart, dEnd, 2010).should.equal 7
-            mn.monthCollectionForYear(dStart, dEnd, 2012).should.equal 9
+            mn.monthCountForYear(dStart, dEnd, 2011).should.equal 12
+            mn.monthCountForYear(dStart, dEnd, 2010).should.equal 7
+            mn.monthCountForYear(dStart, dEnd, 2012).should.equal 9
 
     describe "monthSize", ->
         it "should return month size", ->

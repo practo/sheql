@@ -1,5 +1,5 @@
 module.exports = ->
-    monthNames = [
+    monthName = [
         'jan', 'feb', 'mar',
         'apr', 'may', 'jun',
         'jul', 'aug', 'sep',
@@ -8,11 +8,13 @@ module.exports = ->
 
     obj = {}
 
+    propCollection = (year, month) -> [monthName[month], obj.monthSize year, month]
+
     obj.monthSize = (year, month) ->
         d = new Date year, month+1, 0
         d.getDate()
 
-    obj.monthCollectionForYear = (startDate, endDate, year) ->
+    obj.monthCountForYear = (startDate, endDate, year) ->
         startYear = startDate.getFullYear()
         endYear = endDate.getFullYear()
         if startYear is year and endYear is year
@@ -35,5 +37,6 @@ module.exports = ->
         months -= startDate.getMonth()
         months -= 12 - endDate.getMonth() - 1
         months
+
 
     obj
