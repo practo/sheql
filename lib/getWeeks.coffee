@@ -15,7 +15,6 @@ module.exports = ->
         while date.toString() isnt endDate.toString()
             count++ if date.getDay() is 0
             date = nextDate date
-            # console.log(date)
             if date.toString() is 'Invalid Date'
                 throw  Error 'Invalid Date'
 
