@@ -16,6 +16,28 @@ describe "getWeeks", ->
     it "should exist", ->
         should.exist wk
 
+    describe "weekCollection", ->
+        it "should exist", -> should.exist wk.weekCollection
+
+        it "should return an array", ->
+            dStart = new Date 2014, 1, 3
+            dEnd = new Date 2014, 1, 20
+            wk.weekCollection( dStart, dEnd).length.should.equal 3
+
+    describe "weekCollectionForMonth", ->
+        it "should exist", -> should.exist wk.weekCollectionForMonth
+
+        it "should return an array", ->
+            wk.weekCollectionForMonth(2014, 0).length.should.equal 5
+
+
+    describe "weekCollectionForYear", ->
+        it "should exist", -> should.exist wk.weekCollectionForYear
+
+        it "should return an array", ->
+            wk.weekCollectionForYear(2014).length.should.equal 53
+
+
     describe "weekCount", ->
         it "should exist", ->
             should.exist wk.weekCount
