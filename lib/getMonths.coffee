@@ -8,7 +8,7 @@ module.exports = ->
 
     obj = {}
 
-    propCollection = (year, month) -> [monthName[month], obj.monthSize year, month]
+    propCollection = (year, month) -> [monthName[month], obj.monthSize(year, month)+'d']
 
     obj.monthSize = (year, month) ->
         d = new Date year, month+1, 0
@@ -38,5 +38,15 @@ module.exports = ->
         months -= 12 - endDate.getMonth() - 1
         months
 
+    obj.monthCollection = (startDate, count) ->
+        startMonth = startDate.getMonth()
+        for i in [0...count]
+            startDate.setMonth(startMonth+i)
+            year = startDate.getFullYear()
+            month = startDate.getMonth()
+
+            value: i
+            type: 'month'
+            props: propCollection(year, month)
 
     obj
