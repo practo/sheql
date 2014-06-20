@@ -76,10 +76,3 @@ describe "getMonths", ->
             [m1] = mn.monthCollection dStart, dEnd
             m1.type.should.equal 'month'
             m1.value.should.equal 0
-
-
-    describe "monthSize", ->
-        it "should return month size", ->
-            mn.monthSize(2011, 0).should.equal 31
-            mn.monthSize(2011, 1).should.equal 28
-            mn.monthSize(2012, 1).should.equal 29
