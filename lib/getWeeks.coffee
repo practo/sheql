@@ -1,4 +1,4 @@
-Months = require('./getMonths')()
+Months = require('./getDays')()
 module.exports = ->
     obj = {}
 
@@ -8,7 +8,7 @@ module.exports = ->
         date
 
     obj.weekCollectionForMonth = (year, month) ->
-        size = Months.monthSize year, month
+        size = Months.dayCountForMonth year, month
         startDate = new Date year, month, 1
         endDate = new Date year, month, size
         @weekCollection startDate, endDate
