@@ -1,7 +1,6 @@
 module.exports = ->
     obj = {}
 
-    #Should return a count only
     obj.yearCollection = (startDate, endDate) ->
         startYear = startDate.getFullYear()
         endYear = endDate.getFullYear()
