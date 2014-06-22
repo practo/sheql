@@ -1,15 +1,33 @@
 module.exports = ->
     obj = {}
+    dayName = [
+        'sun', 'mon'
+        'tue', 'wed'
+        'thr', 'fri'
+        'sat'
+    ]
+    getPropCollection = (date) -> [dayName[date.getDay()], date.getDate()]
 
     obj.nextDate = (date) ->
         date = new Date date.getFullYear(), date.getMonth(), date.getDate()
         date.setDate date.getDate()+1
         date
 
-
     obj.dayCountForMonth = (year, month) ->
         d = new Date year, month+1, 0
         d.getDate()
+
+    obj.dayCollection = (startDate, endDate) ->
+        dates = []
+        date = startDate
+        while date.valueOf() <= endDate
+            dates.push
+                value: date
+                type: 'date'
+                props: getPropCollection date
+            date = @nextDate date
+        dates
+
 
     obj.dayCount = (startDate, endDate) ->
         one_day=1000*60*60*24
