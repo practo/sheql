@@ -63,5 +63,6 @@ module.exports = ->
             value: i
             type: 'month'
             props: propCollection(year, month)
+            year: year
 
     obj

@@ -76,3 +76,4 @@ describe "getMonths", ->
             [m1] = mn.monthCollection dStart, dEnd
             m1.type.should.equal 'month'
             m1.value.should.equal 0
+            m1.year.should.equal 2016
