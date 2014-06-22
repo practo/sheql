@@ -1,6 +1,12 @@
 module.exports = ->
     obj = {}
 
+    obj.nextDate = (date) ->
+        date = new Date date.getFullYear(), date.getMonth(), date.getDate()
+        date.setDate date.getDate()+1
+        date
+
+
     obj.dayCountForMonth = (year, month) ->
         d = new Date year, month+1, 0
         d.getDate()

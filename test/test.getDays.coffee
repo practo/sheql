@@ -16,6 +16,11 @@ describe "getDays", ->
     it "should exist", ->
         should.exist dy
 
+    describe "nextDate()", ->
+        it "should return next date", ->
+            ndy = dy.nextDate new Date 2013,11,31
+            ndy.should.eql (new Date 2014,0,1)
+
     describe "dayCount", ->
         it "should return dayCount", ->
             startDate = new Date 2014, 0, 1
