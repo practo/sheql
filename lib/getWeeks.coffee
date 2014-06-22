@@ -1,14 +1,10 @@
-Months = require('./getDays')()
+Days = require('./getDays')()
 module.exports = ->
     obj = {}
 
-    nextDate = (date) ->
-        date = new Date date.getFullYear(), date.getMonth(), date.getDate()
-        date.setDate date.getDate()+1
-        date
 
     obj.weekCollectionForMonth = (year, month) ->
-        size = Months.dayCountForMonth year, month
+        size = Days.dayCountForMonth year, month
         startDate = new Date year, month, 1
         endDate = new Date year, month, size
         @weekCollection startDate, endDate
@@ -41,7 +37,7 @@ module.exports = ->
 
 
             #Go to next date
-            date = nextDate date
+            date = Days.nextDate date
         weekList
 
 
@@ -52,7 +48,7 @@ module.exports = ->
 
         while date.valueOf() <= endDate.valueOf()
             count++ if date.getDay() is 0
-            date = nextDate date
+            date = Days.nextDate date
 
         if startDate.getDay() is 0 then count else count + 1
 
