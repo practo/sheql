@@ -19,6 +19,12 @@ describe "Lexer", ->
         it "should exist", ->
             should.exist lxr._ast
 
+        it "should build ast", ->
+            lxr._ast ['y', '.',  'leap', 'm', '.', 'jan', 'd', '.', 'wed']
+            .should.eql
+                y: [filterType: '.', filterOn: 'leap']
+                m: [filterType: '.', filterOn: 'jan' ]
+                d: [filterType: '.', filterOn: 'wed' ]
 
         it "should attach core type", ->
             lxr._ast([
@@ -83,6 +89,8 @@ describe "Lexer", ->
                 "m"
                 "d"
             ]
+            lxr._splitOnTokens "y.leap m.jan d.wed"
+            .should.eql ['y', '.',  'leap', 'm', '.', 'jan', 'd', '.', 'wed']
 
 
         it "should ignore multi spaces", ->
@@ -221,7 +229,6 @@ describe "Lexer", ->
     describe "parser()", ->
         it "should have parse", ->
             should.exist lxr.parser
-
 
         it "should return an ast", ->
             lxr.parser("y m d.sat").should.eql

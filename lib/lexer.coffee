@@ -38,7 +38,7 @@ module.exports = ->
         lastBaseToken = undefined
         filterOn = undefined
         _.each tokenCollection, ((token) =>
-            if token.match(/(y|m|w|d)/)
+            if token.match(/^(y|m|w|d)$/)
                 tree[token] = []
                 lastBaseToken = token
             else if token.match(/(:|\.|\!)/)
@@ -48,6 +48,7 @@ module.exports = ->
                     filterOn = @_parseColonFilters(token)
                 else
                     filterOn = token
+
                 tree[lastBaseToken].push
                     filterType: tokenType
                     filterOn: filterOn
