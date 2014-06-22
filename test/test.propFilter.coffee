@@ -18,10 +18,11 @@ describe "propFilter", ->
 
     describe "hasProp", ->
         it "should return true", ->
-            pf.hasProp props: ['aaa'], 'aaa'
-            .should.be.true
+            itemCollection = [props: ['aaa']]
+            pf.hasProp itemCollection, 'aaa'
+            .should.eql [itemCollection[0]]
 
 
         it "should return false", ->
-            pf.hasProp props: ['aaaa'], 'aaa'
-            .should.be.false
+            pf.hasProp [props: ['aaaa']], 'aaa'
+            .should.be.empty
