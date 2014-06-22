@@ -24,6 +24,13 @@ describe "getWeeks", ->
             dEnd = new Date 2014, 1, 20
             wk.weekCollection( dStart, dEnd).length.should.equal 3
 
+        it "should attach start and end dates", ->
+            dStart = new Date 2013, 11, 27
+            dEnd = new Date 2014, 1, 20
+            [w1] = wk.weekCollection(dStart, dEnd)
+            w1.startDate.valueOf().should.equal dStart.valueOf()
+            w1.endDate.valueOf().should.equal (new Date 2013, 11, 28).valueOf()
+
     describe "weekCollectionForMonth", ->
         it "should exist", -> should.exist wk.weekCollectionForMonth
 

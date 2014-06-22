@@ -20,8 +20,30 @@ module.exports = ->
 
 
     obj.weekCollection = (startDate, endDate) ->
-        count = @weekCount startDate, endDate
-        (value:i, type: 'week', props: [] for i in [0...count])
+        weekList = []
+        date = startDate
+        count = 0
+
+        while date.valueOf() <= endDate.valueOf()
+            #console.log date, count
+            #Start of the week
+            if date.getDay() is 0 or date.valueOf() is startDate.valueOf()
+                wStartDate = date
+
+            #end of week
+            if date.getDay() is 6 or date.valueOf() is endDate.valueOf()
+                weekList.push
+                    value: count++
+                    startDate: wStartDate
+                    endDate: date
+                    type: 'week'
+                    props: []
+
+
+            #Go to next date
+            date = nextDate date
+        weekList
+
 
     obj.weekCount = (startDate, endDate) ->
         count = 0
