@@ -1,12 +1,17 @@
 should = require "should"
 describe "Sheql", ->
-
+    sheql = {}
+    sh = {}
     beforeEach ->
-        lxr = Lexer()
+        sh = sheql()
+
 
     before ->
-        Lexer = require("../lib/Lexer")
+        sheql = require("../lib/sheql")
 
     after ->
-        delete require.cache[require.resolve("../lib/Lexer")]
+        delete require.cache[require.resolve("../lib/sheql")]
 
+    describe "executor", ->
+        it "sssss", ->
+            # console.log sh.executor 'y.leap m.jan d.wed'
