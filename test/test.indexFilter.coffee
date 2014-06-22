@@ -19,14 +19,19 @@ describe "indexFilter", ->
     describe "nthElement", ->
         itemCollection = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
 
-        it "should return alternate elements", ->
+        it "should return alternate elements n[2x] ", ->
             dxf.nthElement itemCollection, 2, 0
-            .should.eql ['a', 'c', 'e', 'g']
+            .should.eql ['b', 'd', 'f']
 
-        it "should return 3rd element", ->
+        it "should return 3rd element [3]", ->
             dxf.nthElement itemCollection, 0, 3
-            .should.eql ['d']
+            .should.eql ['c']
 
-        it "should return all but first 3", ->
+        it "should return all but first 3 [x+3]", ->
             dxf.nthElement itemCollection, 1, 3
-            .should.eql [ 'd', 'e', 'f', 'g']
+            .should.eql ['c',  'd', 'e', 'f', 'g']
+
+        it "should return first child [-x+4]", ->
+            dxf.nthElement itemCollection, -1, 4
+            .should.eql [ 'a', 'b', 'c', 'd' ]
+
