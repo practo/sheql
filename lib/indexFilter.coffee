@@ -5,6 +5,7 @@ module.exports = ->
     obj.lthElement = (itemCollection, x1, x0) ->
         itemCollection = itemCollection.reverse()
         @nthElement itemCollection, x1, x0
+        .reverse()
 
     obj.nthElement = (itemCollection, x1, x0) ->
 
