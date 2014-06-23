@@ -8,6 +8,21 @@ module.exports = ->
     ]
 
     obj = {}
+    getStartDate = (startDate, year, month) ->
+        tmpStartDate = new Date year, month, 1
+
+        if tmpStartDate.valueOf() < startDate.valueOf()
+            tmpStartDate = startDate
+
+        tmpStartDate
+
+    getEndDate = (endDate, year, month) ->
+        tmpEndDate = new Date year, month, Days.dayCountForMonth year, month
+        if tmpEndDate.valueOf() > endDate.valueOf()
+            tmpEndDate = endDate
+        tmpEndDate
+
+
 
     propCollection = (year, month) -> [monthName[month], Days.dayCountForMonth(year, month)+'d']
 
@@ -53,16 +68,26 @@ module.exports = ->
         return @monthCollection new Date(year, 0, 1), new Date(year, 11, 31)
 
     obj.monthCollection = (startDate, endDate) ->
+        months =[]
         count = @monthCount startDate, endDate
         startMonth = startDate.getMonth()
-        for i in [0...count]
-            startDate.setMonth(startMonth+i)
-            year = startDate.getFullYear()
-            month = startDate.getMonth()
+        startYear = startDate.getFullYear()
+        date = new Date startYear, startMonth, 1
 
-            value: i
-            type: 'month'
-            props: propCollection(year, month)
-            year: year
+        for i in [0...count]
+            # console.log date
+
+            year = date.getFullYear()
+            month = date.getMonth()
+
+            months.push
+                type: 'month'
+                props: propCollection year, month
+                startDate: getStartDate startDate, year, month
+                endDate: getEndDate endDate, year, month
+
+            date.setMonth date.getMonth() + 1
+
+        months
 
     obj

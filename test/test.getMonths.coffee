@@ -75,5 +75,15 @@ describe "getMonths", ->
 
             [m1] = mn.monthCollection dStart, dEnd
             m1.type.should.equal 'month'
-            m1.value.should.equal 0
-            m1.year.should.equal 2016
+
+
+        it "should attach start and end dates", ->
+            dStart = new Date 2016, 0, 23
+            dEnd = new Date 2016, 3, 15
+
+            [m1, ..., ml] = mn.monthCollection dStart, dEnd
+            m1.startDate.toString().should.equal dStart.toString()
+            m1.endDate.toString().should.equal (new Date 2016, 0, 31).toString()
+
+            ml.startDate.toString().should.equal (new Date 2016, 3, 1).toString()
+            ml.endDate.toString().should.equal (new Date 2016, 3, 15).toString()
