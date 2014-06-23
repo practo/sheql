@@ -7,7 +7,7 @@ describe "getYears", ->
     beforeEach ->
         yr = getYears()
         dStart = new Date 2016, 1, 23
-        dEnd = new Date 2020, 1, 23
+        dEnd = new Date 2020, 4, 11
 
     before ->
         getYears = require "../lib/getYears"
@@ -22,21 +22,33 @@ describe "getYears", ->
         it "should exist", ->
             should.exist yr.yearCollection
 
-        it "should return a collection of 4 items", ->
-            yr.yearCollection(dStart, dEnd).length .should.equal 4
+        it "should return a collection of 5 items", ->
+            yr.yearCollection(dStart, dEnd).length .should.equal 5
 
         it "should attach type as year", ->
             [year] = yr.yearCollection(dStart, dEnd)
             year.type.should.equal 'year'
 
-        it "should attach value", ->
-            [year] = yr.yearCollection(dStart, dEnd)
-            year.value.should.equal 2016
+        # it "should attach value", ->
+        #     [year] = yr.yearCollection(dStart, dEnd)
+        #     year.value.should.equal 2016
 
-        it "should attach value", ->
-            [year1, year2] = yr.yearCollection(dStart, dEnd)
-            year1.props[0].should.equal 'leap'
+        it "should attach props", ->
+            [year1,year2,..., year20] = yr.yearCollection(dStart, dEnd)
+            year1.props.should.eql ['leap']
             year2.props.should.eql []
+            year20.props.should.eql ['leap']
+
+        it "should attach startDate and endDate", ->
+            [year1, year2,..., yearlast] = yr.yearCollection(dStart, dEnd)
+            year1.startDate.toString().should.equal dStart.toString()
+            year1.endDate.toString().should.equal (new Date 2016, 11, 31).toString()
+
+            year2.startDate.toString().should.equal (new Date 2017, 0, 1).toString()
+            year2.endDate.toString().should.equal (new Date 2017, 11, 31).toString()
+
+            yearlast.startDate.toString().should.equal (new Date 2020, 0 ,1).toString()
+            yearlast.endDate.toString().should.equal (new Date 2020, 4, 11).toString()
 
 
     describe "isLeapYear", ->
