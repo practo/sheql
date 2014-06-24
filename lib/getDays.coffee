@@ -17,7 +17,7 @@ module.exports = ->
         d = new Date year, month+1, 0
         d.getDate()
 
-    obj.dayCollection = (startDate, endDate) ->
+    obj.getCollection = (startDate, endDate) ->
         dates = []
         date = startDate
         while date.valueOf() <= endDate

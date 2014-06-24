@@ -3,19 +3,19 @@ module.exports = ->
     obj = {}
 
 
-    obj.weekCollectionForMonth = (year, month) ->
+    obj.getCollectionForMonth = (year, month) ->
         size = Days.dayCountForMonth year, month
         startDate = new Date year, month, 1
         endDate = new Date year, month, size
-        @weekCollection startDate, endDate
+        @getCollection startDate, endDate
 
-    obj.weekCollectionForYear = (year) ->
+    obj.getCollectionForYear = (year) ->
         startDate = new Date year, 0, 1
         endDate = new Date year, 11, 31
-        @weekCollection startDate, endDate
+        @getCollection startDate, endDate
 
 
-    obj.weekCollection = (startDate, endDate) ->
+    obj.getCollection = (startDate, endDate) ->
         weekList = []
         date = startDate
         count = 0

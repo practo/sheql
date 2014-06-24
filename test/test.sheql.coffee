@@ -12,6 +12,8 @@ describe "Sheql", ->
     after ->
         delete require.cache[require.resolve("../lib/sheql")]
 
+    describe "executor", ->
+
 
     describe "filterCollection", ->
         it "should filter on dots", ->

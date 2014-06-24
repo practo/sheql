@@ -18,29 +18,29 @@ describe "getYears", ->
     it "should exist", ->
         should.exist yr
 
-    describe "yearCollection", ->
+    describe "getCollection", ->
         it "should exist", ->
-            should.exist yr.yearCollection
+            should.exist yr.getCollection
 
         it "should return a collection of 5 items", ->
-            yr.yearCollection(dStart, dEnd).length .should.equal 5
+            yr.getCollection(dStart, dEnd).length .should.equal 5
 
         it "should attach type as year", ->
-            [year] = yr.yearCollection(dStart, dEnd)
+            [year] = yr.getCollection(dStart, dEnd)
             year.type.should.equal 'year'
 
         # it "should attach value", ->
-        #     [year] = yr.yearCollection(dStart, dEnd)
+        #     [year] = yr.getCollection(dStart, dEnd)
         #     year.value.should.equal 2016
 
         it "should attach props", ->
-            [year1,year2,..., year20] = yr.yearCollection(dStart, dEnd)
+            [year1,year2,..., year20] = yr.getCollection(dStart, dEnd)
             year1.props.should.eql ['leap']
             year2.props.should.eql []
             year20.props.should.eql ['leap']
 
         it "should attach startDate and endDate", ->
-            [year1, year2,..., yearlast] = yr.yearCollection(dStart, dEnd)
+            [year1, year2,..., yearlast] = yr.getCollection(dStart, dEnd)
             year1.startDate.toString().should.equal dStart.toString()
             year1.endDate.toString().should.equal (new Date 2016, 11, 31).toString()
 

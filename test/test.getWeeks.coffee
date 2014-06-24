@@ -16,33 +16,33 @@ describe "getWeeks", ->
     it "should exist", ->
         should.exist wk
 
-    describe "weekCollection", ->
-        it "should exist", -> should.exist wk.weekCollection
+    describe "getCollection", ->
+        it "should exist", -> should.exist wk.getCollection
 
         it "should return an array", ->
             dStart = new Date 2014, 1, 3
             dEnd = new Date 2014, 1, 20
-            wk.weekCollection( dStart, dEnd).length.should.equal 3
+            wk.getCollection( dStart, dEnd).length.should.equal 3
 
         it "should attach start and end dates", ->
             dStart = new Date 2013, 11, 27
             dEnd = new Date 2014, 1, 20
-            [w1] = wk.weekCollection(dStart, dEnd)
+            [w1] = wk.getCollection(dStart, dEnd)
             w1.startDate.valueOf().should.equal dStart.valueOf()
             w1.endDate.valueOf().should.equal (new Date 2013, 11, 28).valueOf()
 
-    describe "weekCollectionForMonth", ->
-        it "should exist", -> should.exist wk.weekCollectionForMonth
+    describe "getCollectionForMonth", ->
+        it "should exist", -> should.exist wk.getCollectionForMonth
 
         it "should return an array", ->
-            wk.weekCollectionForMonth(2014, 0).length.should.equal 5
+            wk.getCollectionForMonth(2014, 0).length.should.equal 5
 
 
-    describe "weekCollectionForYear", ->
-        it "should exist", -> should.exist wk.weekCollectionForYear
+    describe "getCollectionForYear", ->
+        it "should exist", -> should.exist wk.getCollectionForYear
 
         it "should return an array", ->
-            wk.weekCollectionForYear(2014).length.should.equal 53
+            wk.getCollectionForYear(2014).length.should.equal 53
 
 
     describe "weekCount", ->

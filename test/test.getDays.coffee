@@ -16,19 +16,19 @@ describe "getDays", ->
     it "should exist", ->
         should.exist dy
 
-    describe "dayCollection()", ->
+    describe "getCollection()", ->
         it "return date array", ->
             startDate = new Date 2013, 11, 26
             endDate = new Date 2014,0,5
 
-            dy.dayCollection startDate, endDate
+            dy.getCollection startDate, endDate
             .length.should.equal 11
 
         it "should attach week and date", ->
             startDate = new Date 2013, 11, 26
             endDate = new Date 2014,0,5
 
-            [w1] = dy.dayCollection startDate, endDate
+            [w1] = dy.getCollection startDate, endDate
             w1.props.should.eql ['thr', 26]
 
 

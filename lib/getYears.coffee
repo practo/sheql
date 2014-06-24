@@ -25,7 +25,7 @@ module.exports = ->
         if d.getDate() is 29 then true else false
 
 
-    obj.yearCollection = (startDate, endDate) ->
+    obj.getCollection = (startDate, endDate) ->
         years = []
         count = endDate.getFullYear() - startDate.getFullYear()
         currentYear = startDate.getFullYear()

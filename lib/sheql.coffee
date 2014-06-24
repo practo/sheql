@@ -30,7 +30,7 @@ module.exports = ->
 
 
     sheql.executor = (str, startDate, endDate)->
-        # ast = lexer.parser str
+        ast = lexer.parser str
 
         # itemCollection = []
 
