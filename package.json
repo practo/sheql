@@ -14,13 +14,17 @@
     "mocha": "^1.20.1",
     "should": "^4.0.4"
   },
-  "description": "![alt text](https://raw.githubusercontent.com/practo/sheql/master/public/images/scheql.png)",
+  "description": "An elegant solution for selecting dates",
   "main": "sheql.js",
   "directories": {
     "test": "tests"
   },
+  "bin": {
+    "sheql": "./bin/sheql"
+  },
   "scripts": {
-    "test": "mocha test/test.*.js"
+    "test": "mocha test/test.*.js",
+    "prepublish": "node_modules/coffee-script/bin/coffee -c src/*.coffee -o lib/"
   },
   "repository": {
     "type": "git",

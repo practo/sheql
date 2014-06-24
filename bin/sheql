@@ -1,0 +1,5 @@
+#!/usr/bin/env node
+
+var sh = require('../lib/executor');
+console.log(process.argv[2]);
+// console.log(sh.executor(process));

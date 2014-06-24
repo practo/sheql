@@ -1,5 +1,5 @@
 require('coffee-script');
 exe = require('./lib/executor')();
-module.exports = function (str) {
+module.exports.getDates = function (str) {
 	exe.executor(str);
 };
