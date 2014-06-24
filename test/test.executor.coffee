@@ -1,16 +1,16 @@
 should = require "should"
 describe "Sheql", ->
-    sheql = {}
+    executor = {}
     sh = {}
     beforeEach ->
-        sh = sheql()
+        sh = executor()
 
 
     before ->
-        sheql = require("../lib/sheql")
+        executor = require("../lib/executor")
 
     after ->
-        delete require.cache[require.resolve("../lib/sheql")]
+        delete require.cache[require.resolve("../lib/executor")]
 
     describe "executor", ->
 
