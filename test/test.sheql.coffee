@@ -14,6 +14,12 @@ describe "Sheql", ->
 
     describe "executor", ->
 
+        it "should compute", ->
+            startDate = new Date 2014, 0, 5
+            endDate = new Date 2014, 11, 30
+            sh.executor 'y m:n[2x] d.sat', startDate, endDate
+
+
 
     describe "filterCollection", ->
         it "should filter on dots", ->
