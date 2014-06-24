@@ -2,9 +2,11 @@ _ = require 'underscore'
 module.exports = ->
     obj = {}
 
-    obj.hasProp = (itemCollection, prop) ->
+    obj.notHaveProp = (itemCollection, filterOn) ->
+        _.filter itemCollection, (item) -> item.props.indexOf(filterOn) is -1
+
+    obj.hasProp = (itemCollection, filterOn) ->
         _.filter itemCollection, (item) ->
-            _.some item.props, (p) ->
-                p is prop
+            item.props.indexOf(filterOn) > -1
 
     obj

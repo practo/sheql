@@ -16,6 +16,18 @@ describe "propFilter", ->
     it "should exist", ->
         should.exist pf
 
+    describe "notHaveProp", ->
+        it "should return true", ->
+            itemCollection = [props: ['aaa']]
+            pf.notHaveProp itemCollection, 'aaa'
+            .should.eql []
+
+
+        it "should return empty", ->
+            itemCollection = [props: ['aaaa']]
+            pf.notHaveProp itemCollection, 'aaa'
+            .should.eql [itemCollection[0]]
+
     describe "hasProp", ->
         it "should return true", ->
             itemCollection = [props: ['aaa']]
@@ -23,6 +35,6 @@ describe "propFilter", ->
             .should.eql [itemCollection[0]]
 
 
-        it "should return false", ->
+        it "should return empty", ->
             pf.hasProp [props: ['aaaa']], 'aaa'
-            .should.be.empty
+            .should.eql []
