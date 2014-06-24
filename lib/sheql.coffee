@@ -74,6 +74,6 @@ module.exports = ->
 
 
 
-        console.log _.map itemCollection, (i) -> i.value.toDateString()
+        _.map itemCollection, (i) -> i.value
 
     sheql
