@@ -8,7 +8,6 @@ module.exports = ->
         .reverse()
 
     obj.nthElement = (itemCollection, x1, x0) ->
-
         #index starts from 0, implementation wise
         x0--
         filteredCollection = []

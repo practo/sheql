@@ -12,6 +12,24 @@ collectionBuilder =
 module.exports = ->
     arr = []
     sheql = {}
+
+    sheql.getCollections = (ast, itemCollection, startDate, endDate, filterName)->
+        tmpCollection =[]
+        _cb = collectionBuilder[filterName]
+        if ast[filterName]
+            if itemCollection.length > 0
+                _.each itemCollection, (item)->
+                    arr.push.apply tmpCollection, _cb.getCollection item.startDate, item.endDate
+            else
+                tmpCollection = _cb.getCollection startDate, endDate
+
+            #Apply Filters
+            @filterCollection tmpCollection, ast[filterName]
+        else
+            # console.log 'returning the same for:', filterName
+            itemCollection
+
+
     sheql.filterCollection = (collection, filterProps) ->
         _.each filterProps, (prop) ->
 
@@ -34,45 +52,13 @@ module.exports = ->
         ast = lexer.parser str
 
         itemCollection = []
+        itemCollection = @getCollections ast, itemCollection, startDate, endDate, 'y'
 
-        if ast.y
-            itemCollection = collectionBuilder.y.getCollection startDate, endDate
-            itemCollection = @filterCollection itemCollection, ast.y
+        itemCollection = @getCollections ast, itemCollection, startDate, endDate, 'm'
 
+        itemCollection = @getCollections ast, itemCollection, startDate, endDate, 'w'
 
-        if ast.m
-            if itemCollection.length > 0
-                tmpCollection =[]
-                _.each itemCollection, (item)->
-                    arr.push.apply tmpCollection, collectionBuilder.m.getCollection item.startDate, item.endDate
-
-                itemCollection = @filterCollection tmpCollection, ast.m
-            else
-                itemCollection = collectionBuilder.m.getCollection startDate, endDate
-
-
-        if ast.w
-            if itemCollection.length > 0
-                tmpCollection =[]
-                _.each itemCollection, (item)->
-                    arr.push.apply tmpCollection, collectionBuilder.w.getCollection item.startDate, item.endDate
-
-                itemCollection = @filterCollection tmpCollection, ast.w
-            else
-                itemCollection = collectionBuilder.w.getCollection startDate, endDate
-
-
-        if ast.d
-            if itemCollection.length > 0
-                tmpCollection =[]
-                _.each itemCollection, (item)->
-                    arr.push.apply tmpCollection, collectionBuilder.d.getCollection item.startDate, item.endDate
-
-                itemCollection = @filterCollection tmpCollection, ast.d
-            else
-                itemCollection = collectionBuilder.d.getCollection startDate, endDate
-
-
+        itemCollection = @getCollections ast, itemCollection, startDate, endDate, 'd'
 
         _.map itemCollection, (i) -> i.value
 
