@@ -10,10 +10,10 @@ describe "getYears", ->
         dEnd = new Date 2020, 4, 11
 
     before ->
-        getYears = require "../lib/getYears"
+        getYears = require "../src/getYears"
 
     after ->
-        delete require.cache[require.resolve "../lib/getYears" ]
+        delete require.cache[require.resolve "../src/getYears" ]
 
     it "should exist", ->
         should.exist yr

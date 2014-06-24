@@ -7,10 +7,10 @@ describe "Sheql", ->
 
 
     before ->
-        executor = require("../lib/executor")
+        executor = require("../src/executor")
 
     after ->
-        delete require.cache[require.resolve("../lib/executor")]
+        delete require.cache[require.resolve("../src/executor")]
 
     describe "executor", ->
 

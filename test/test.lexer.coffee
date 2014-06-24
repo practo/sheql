@@ -7,11 +7,11 @@ describe "Lexer", ->
 
 
     before ->
-        Lexer = require("../lib/lexer")
+        Lexer = require("../src/lexer")
 
 
     after ->
-        delete require.cache[require.resolve("../lib/lexer")]
+        delete require.cache[require.resolve("../src/lexer")]
 
 
 

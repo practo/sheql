@@ -10,10 +10,10 @@ describe "indexFilter", ->
         itemCollection = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
 
     before ->
-        indexFilter = require "../lib/indexFilter"
+        indexFilter = require "../src/indexFilter"
 
     after ->
-        delete require.cache[require.resolve "../lib/indexFilter" ]
+        delete require.cache[require.resolve "../src/indexFilter" ]
 
     it "should exist", ->
         should.exist dxf

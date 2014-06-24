@@ -8,10 +8,10 @@ describe "getWeeks", ->
         wk = getWeeks()
 
     before ->
-        getWeeks = require "../lib/getWeeks"
+        getWeeks = require "../src/getWeeks"
 
     after ->
-        delete require.cache[require.resolve "../lib/getWeeks" ]
+        delete require.cache[require.resolve "../src/getWeeks" ]
 
     it "should exist", ->
         should.exist wk

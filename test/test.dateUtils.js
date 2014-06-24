@@ -8,11 +8,11 @@ describe('DateUtils', function () {
 	});
 
 	before(function () {
-		DateUtils = require('../lib/dateUtils');
+		DateUtils = require('../src/dateUtils');
 	});
 
 	after(function () {
-		delete require.cache[require.resolve('../lib/dateUtils')];
+		delete require.cache[require.resolve('../src/dateUtils')];
 	});
 
 });

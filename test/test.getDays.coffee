@@ -8,10 +8,10 @@ describe "getDays", ->
         dy = getDays()
 
     before ->
-        getDays = require "../lib/getDays"
+        getDays = require "../src/getDays"
 
     after ->
-        delete require.cache[require.resolve "../lib/getDays" ]
+        delete require.cache[require.resolve "../src/getDays" ]
 
     it "should exist", ->
         should.exist dy

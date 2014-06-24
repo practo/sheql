@@ -8,10 +8,10 @@ describe "propFilter", ->
         pf = propFilter()
 
     before ->
-        propFilter = require "../lib/propFilter"
+        propFilter = require "../src/propFilter"
 
     after ->
-        delete require.cache[require.resolve "../lib/propFilter" ]
+        delete require.cache[require.resolve "../src/propFilter" ]
 
     it "should exist", ->
         should.exist pf
