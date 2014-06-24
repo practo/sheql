@@ -25,7 +25,6 @@ Day: `d`
 
 **Years** `y.leap`
 
-
 **Months** `m.jan`, `m.feb` ...., `m.31d`, `m.30d`, `m.28d`, `m.29d`
 
 **Days** `d.sat`,  `d.mon`,  `d.10`, `d.11`, `d.23`
@@ -119,53 +118,7 @@ m d:n[12]
 y m:n[-x+3] d:n[x+1]:n[-x+1]
 ```
 
-**2006, 2012 and 2004's alternate month's saturdays **
+**every day in jan except fridays**
 ```css
-y#2006, y#2012, y#2004{
-    & m:n[2x] d.sat
-}
-```
-
-
-
-**every month first sat after 12th**
-
-```css
-m d:n[x+12]~d.sat[1]    /*NOT SUPPORTED AS OF NOW*/
-```
-**every month alternate days after 12th**
-
-```css
-m d:n[x+12]~d.sat[2x]   /*NOT SUPPORTED AS OF NOW*/
-```
-**4th april 2016**
-
-```css
-;        /*NOT SUPPORTED AS OF NOW*/
-```
-**31st day is tuesday**
-
-```css
-m d:n[31].tue
-```
-**Every month's third sat is 18th**
-
-```css
-m d.sat:n[3].18
-```
-**sat of a month if it is 10th**
-
-```css
-m d.sat.10
-```
-**15 days from the third mon of a month**
-
-```css
-m d.mon:n[3]:n[n+1,n+15](2) /*NOT SUPPORTED AS OF NOW*/
-m d.mon:n[3]~d:n[n+15](3)   /*NOT SUPPORTED*/
-```
-
-**All days in a month except fridays**
-```css
-m d!fri  /*NOT SUPPORTED AS OF NOW*/
+m.jan d!fri
 ```
