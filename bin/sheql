@@ -1,11 +1,11 @@
-#!/usr/bin/env node
+#!/usr/bin/env coffee
 
-var sh = require('../lib/executor')();
-var str = process.argv[2];
-var startYear = process.argv[3] || new Date().getFullYear();
-var endYear = process.argv[4] || new Date().getFullYear();
-var dateCollection = sh.executor(str, new Date(startYear, 0, 1), new Date(endYear, 11, 31));
-for (var i = dateCollection.length - 1; i >= 0; i--) {
+sh = require('../src/executor')()
+str = process.argv[2]
+startYear = process.argv[3] or new Date().getFullYear()
+endYear = process.argv[4] or new Date().getFullYear()
+dateCollection = sh.executor str, new Date(startYear, 0, 1), new Date(endYear, 11, 31)
 
-	console.log(dateCollection[i].toDateString());
-}
+
+for i in dateCollection
+    console.log dateCollection[i].toDateString()
