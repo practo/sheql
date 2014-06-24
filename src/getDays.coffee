@@ -6,7 +6,7 @@ module.exports = ->
         'thr', 'fri'
         'sat'
     ]
-    getPropCollection = (date) -> [dayName[date.getDay()], date.getDate()]
+    getPropCollection = (date) -> [dayName[date.getDay()], date.getDate().toString()]
 
     obj.nextDate = (date) ->
         date = new Date date.getFullYear(), date.getMonth(), date.getDate()
