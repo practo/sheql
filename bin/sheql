@@ -8,4 +8,4 @@ dateCollection = sh.executor str, new Date(startYear, 0, 1), new Date(endYear, 1
 
 
 for i in dateCollection
-    console.log dateCollection[i].toDateString()
+    console.log i.toDateString()

@@ -19,6 +19,8 @@ describe "Sheql", ->
             endDate = new Date 2014, 11, 30
             sh.executor 'y m:n[2x] d.sat', startDate, endDate
             .length.should.equal 25
+            sh.executor 'm d:n[12]', startDate, endDate
+            .length.should.equal 12
 
 
 

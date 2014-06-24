@@ -14,19 +14,20 @@ module.exports = ->
     sheql = {}
 
     sheql.getCollections = (ast, itemCollection, startDate, endDate, filterName)->
-        tmpCollection =[]
+        filteredCollection = []
         _cb = collectionBuilder[filterName]
         if ast[filterName]
             if itemCollection.length > 0
-                _.each itemCollection, (item)->
-                    arr.push.apply tmpCollection, _cb.getCollection item.startDate, item.endDate
+                _.each itemCollection, (item)=>
+                    tmpCollection = _cb.getCollection item.startDate, item.endDate
+                    arr.push.apply filteredCollection, @filterCollection tmpCollection, ast[filterName]
             else
                 tmpCollection = _cb.getCollection startDate, endDate
+                filteredCollection = @filterCollection tmpCollection, ast[filterName]
 
-            #Apply Filters
-            @filterCollection tmpCollection, ast[filterName]
+            filteredCollection
         else
-            # console.log 'returning the same for:', filterName
+
             itemCollection
 
 
@@ -54,10 +55,13 @@ module.exports = ->
         itemCollection = []
         itemCollection = @getCollections ast, itemCollection, startDate, endDate, 'y'
 
+        # console.log itemCollection
         itemCollection = @getCollections ast, itemCollection, startDate, endDate, 'm'
 
+        # console.log itemCollection
         itemCollection = @getCollections ast, itemCollection, startDate, endDate, 'w'
 
+        # console.log itemCollection
         itemCollection = @getCollections ast, itemCollection, startDate, endDate, 'd'
 
         _.map itemCollection, (i) -> i.value
