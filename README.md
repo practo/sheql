@@ -122,3 +122,15 @@ y m:n[-x+3] d:n[x+1]:n[-x+1]
 ```css
 m.jan d!fri
 ```
+
+
+##How to use
+
+1. Have `coffee-script` and `node` installed first.
+2. Clone this repository.
+3. Standard `npm install`.
+3. Run the `sheql` command inside the bin folder.
+    For example - __get all the tuesdays of the year, except if they fall on the last day of the month__
+    ```
+    sheql 'm.sep d:l[x+2].tue'
+    ```
