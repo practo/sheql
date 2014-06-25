@@ -124,13 +124,13 @@ m.jan d!fri
 ```
 
 
-##How to use
+##How to use from cli
 
 1. Have `coffee-script` and `node` installed first.
-2. Clone this repository.
-3. Standard `npm install`.
-3. Run the `sheql` command inside the bin folder.
-    For example - __get all the tuesdays of the year, except if they fall on the last day of the month__
+2. run `npm install sheql -g`.
+3. Example - __get all the tuesdays of the year, except if they fall on the last day of the month__
     ```
     sheql 'm.sep d:l[x+2].tue'
+
     ```
+4. To use it as a package dependency, install it locally and use `require 'sheql'`.
