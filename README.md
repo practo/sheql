@@ -122,6 +122,10 @@ y m:n[-x+3] d:n[x+1]:n[-x+1]
 ```css
 m.jan d!fri
 ```
+**every alternate month's first and third staturday**
+```
+m:n[2x] d.sat:l[x+2]:n[2x+1]
+```
 
 
 ##How to use from cli
