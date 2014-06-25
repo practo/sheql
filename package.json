@@ -30,5 +30,6 @@
     "bugs": {
         "url": "https://github.com/tusharmath/sheql/issues"
     },
+    "preferGlobal": true,
     "homepage": "https://github.com/tusharmath/sheql"
 }
