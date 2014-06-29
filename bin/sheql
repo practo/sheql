@@ -4,8 +4,16 @@ sh = require('../src/executor')()
 str = process.argv[2]
 startYear = process.argv[3] or new Date().getFullYear()
 endYear = process.argv[4] or new Date().getFullYear()
-dateCollection = sh.executor str, new Date(startYear, 0, 1), new Date(endYear, 11, 31)
+startDate = new Date startYear, 0, 1
+endDate = new Date endYear, 11, 31
+
+dateCollection = sh.executor str, startDate, endDate
 
 
 for i in dateCollection
     console.log i.toDateString()
+
+console.log "\nTotal:\t#{dateCollection.length} dates"
+console.log "From:\t#{startDate.toDateString()}"
+console.log "To:\t#{endDate.toDateString()}"
+console.log "Week:\tSunday"
