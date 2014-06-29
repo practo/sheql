@@ -14,11 +14,13 @@ module.exports = ->
         parseInt x0, 10
 
     _proto._x1Extractor = (str) ->
-        x1 = undefined
+        x1 = 0
         if str.match("x")
             x1 = str.replace(/x.*/, "").replace(/.*\[/, "")
             if x1 is ""
                 x1 = 1
+            else if x1 is "-"
+                x1 = -1
             else
                 x1 = parseInt(x1, 10)
         else

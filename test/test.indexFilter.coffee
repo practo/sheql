@@ -44,6 +44,7 @@ describe "indexFilter", ->
             .should.eql ['a']
 
 
+
     describe "nthElement", ->
 
         it "should return alternate elements n[2x] ", ->
@@ -69,3 +70,7 @@ describe "indexFilter", ->
         it "should return [7]", ->
             dxf.nthElement itemCollection, 0, 7
             .should.eql ['g']
+
+        it "should return 3 elements for [-x+3]", ->
+            dxf.nthElement itemCollection, -1, 3
+            .should.eql ['a', 'b', 'c']

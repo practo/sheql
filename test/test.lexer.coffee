@@ -177,6 +177,8 @@ describe "Lexer", ->
         it "should determine the type for n[-2x]", ->
             lxr._x1Extractor("n[-2x]").should.equal -2
 
+        it "experiment", ->
+            lxr._x1Extractor("n[-x+3]").should.equal -1
 
 
 
@@ -221,6 +223,11 @@ describe "Lexer", ->
                 from: "n"
                 x0: -23
                 x1: -4
+
+            lxr._parseColonFilters("n[-x+3]").should.eql
+                from: "n"
+                x0: 3
+                x1: -1
 
 
 

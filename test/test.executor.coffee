@@ -23,7 +23,10 @@ describe "Sheql", ->
             .length.should.equal 12
             sh.executor 'm.feb d.8', startDate, endDate
             .length.should.equal 1
-
+            sh.executor 'm.jan w d.sat', startDate, endDate
+            .length.should.equal 3
+            sh.executor 'm:n[-x+3] d:n[1]', startDate, endDate
+            .length.should.equal 3
 
 
 
