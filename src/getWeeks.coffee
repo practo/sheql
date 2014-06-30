@@ -2,6 +2,8 @@ Days = require('./getDays')()
 module.exports = ->
     obj = {}
 
+    # Start Day of the week is Sunday by default,
+    # but can be easily changed to any other day also
 
     obj.getCollectionForMonth = (year, month) ->
         size = Days.dayCountForMonth year, month
@@ -15,7 +17,8 @@ module.exports = ->
         @getCollection startDate, endDate
 
 
-    obj.getCollection = (startDate, endDate) ->
+    obj.getCollection = (startDate, endDate, startDay=0) ->
+        endDay = (startDay + 6)%7
         weekList = []
         date = startDate
         count = 0
@@ -23,11 +26,11 @@ module.exports = ->
         while date.valueOf() <= endDate.valueOf()
             #console.log date, count
             #Start of the week
-            if date.getDay() is 0 or date.valueOf() is startDate.valueOf()
+            if date.getDay() is startDay or date.valueOf() is startDate.valueOf()
                 wStartDate = date
 
             #end of week
-            if date.getDay() is 6 or date.valueOf() is endDate.valueOf()
+            if date.getDay() is endDay or date.valueOf() is endDate.valueOf()
                 weekList.push
                     value: count++
                     startDate: wStartDate
@@ -41,15 +44,14 @@ module.exports = ->
         weekList
 
 
-    obj.weekCount = (startDate, endDate) ->
+    obj.weekCount = (startDate, endDate, startDay=0) ->
         count = 0
         date = startDate
-        firstDay = startDate.getDay()
-
+        # firstDay = startDate.getDay()
         while date.valueOf() <= endDate.valueOf()
-            count++ if date.getDay() is 0
+            count++ if date.getDay() is startDay
             date = Days.nextDate date
 
-        if startDate.getDay() is 0 then count else count + 1
+        if startDate.getDay() is startDay then count else count + 1
 
     obj
