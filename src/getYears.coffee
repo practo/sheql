@@ -20,7 +20,7 @@ module.exports = ->
         weekCount = "#{Weeks.weekCount startDate, endDate}w"
         isLeap = obj.isLeapYear year
         dayCount = if isLeap is true then '366d' else '365d'
-        [dayCount, weekCount]
+        [dayCount, weekCount, year.toString()]
 
 
     obj.isLeapYear = (year) ->

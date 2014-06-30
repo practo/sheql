@@ -31,9 +31,9 @@ describe "getYears", ->
 
         it "should attach props", ->
             [year1,year2,..., year20] = yr.getCollection(dStart, dEnd)
-            year1.props.should.eql ['366d', '45w']
-            year2.props.should.eql ['365d', '53w']
-            year20.props.should.eql ['366d', '20w']
+            year1.props.should.eql ['366d', '45w', '2016']
+            year2.props.should.eql ['365d', '53w', '2017']
+            year20.props.should.eql ['366d', '20w', '2020']
 
         it "should attach startDate and endDate", ->
             [year1, year2,..., yearlast] = yr.getCollection(dStart, dEnd)
