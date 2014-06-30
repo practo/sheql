@@ -23,9 +23,11 @@ Day: `d`
 
 ##CLASSES
 
-**Years** `y.leap`
+**Years** `y.365d`, `y.366d`, `y.53w`, `y.52w`
 
-**Months** `m.jan`, `m.feb` ...., `m.31d`, `m.30d`, `m.28d`, `m.29d`
+**Months** `m.jan`, `m.feb` ...., `m.31d`, `m.30d`, `m.28d`, `m.29d`, `m.5w`, `m.4w`
+
+**Weeks** `w.4d`, `w.5d`
 
 **Days** `d.sat`,  `d.mon`,  `d.10`, `d.11`, `d.23`
 
