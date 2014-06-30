@@ -18,17 +18,15 @@ module.exports = ->
         _cb = collectionBuilder[filterName]
         if ast[filterName]
             if itemCollection.length > 0
-                _.each itemCollection, (item)=>
+                _.each itemCollection, (item) ->
                     tmpCollection = _cb.getCollection item.startDate, item.endDate
-                    arr.push.apply filteredCollection,  sheql.filterCollection tmpCollection, ast[filterName]
-
+                    arr.push.apply filteredCollection, sheql.filterCollection tmpCollection, ast[filterName]
             else
                 tmpCollection = _cb.getCollection startDate, endDate
                 filteredCollection = sheql.filterCollection tmpCollection, ast[filterName]
-            filteredCollection
+            [filteredCollection, filteredCollection.length is 0]
         else
-
-            itemCollection
+            [itemCollection, false]
 
 
     sheql.filterCollection = (collection, filterProps) ->
@@ -50,20 +48,15 @@ module.exports = ->
 
 
     sheql.executor = (str, startDate, endDate)->
+        filterKeys = ['y', 'm', 'w', 'd']
         ast = lexer.parser str
-
         itemCollection = []
-        itemCollection = getCollections ast, itemCollection, startDate, endDate, 'y'
+        isEmptyCollection = false
 
-        # console.log itemCollection
-        itemCollection = getCollections ast, itemCollection, startDate, endDate, 'm'
-
-        # console.log itemCollection
-        itemCollection = getCollections ast, itemCollection, startDate, endDate, 'w'
-
-        # console.log itemCollection
-        itemCollection = getCollections ast, itemCollection, startDate, endDate, 'd'
-
+        for i in filterKeys
+            if isEmptyCollection is false
+                [itemCollection, isEmptyCollection] =
+                    getCollections ast, itemCollection, startDate, endDate, i
         _.map itemCollection, (i) -> i.value
 
     sheql

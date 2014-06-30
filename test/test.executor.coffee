@@ -27,6 +27,9 @@ describe "Sheql", ->
             .length.should.equal 3
             sh.executor 'm:n[-x+3] d:n[1]', startDate, endDate
             .length.should.equal 3
+            sh.executor 'm.qwe d:n[1]', startDate, endDate
+            .length.should.equal 0
+
 
 
 
