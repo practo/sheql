@@ -1,35 +1,36 @@
 {
-    "name": "sheql",
-    "version": "0.0.5",
-    "private": false,
-    "dependencies": {
-        "underscore": "^1.6.0"
-    },
-    "devDependencies": {
-        "chai": "^1.9.1",
-        "mocha": "^1.20.1",
-        "should": "^4.0.4"
-    },
-    "description": "An elegant solution for selecting dates",
-    "main": "sheql.js",
-    "directories": {
-        "test": "tests"
-    },
-    "bin": {
-        "sheql": "./bin/sheql"
-    },
-    "scripts": {
-        "test": "mocha test/test.*.js"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/tusharmath/sheql.git"
-    },
-    "author": "Tushar Mathur <tusharmath@gmail.com> (http://tusharm.com/)",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/tusharmath/sheql/issues"
-    },
-    "preferGlobal": true,
-    "homepage": "https://github.com/tusharmath/sheql"
+  "name": "sheql",
+  "version": "0.0.5",
+  "private": false,
+  "dependencies": {
+    "underscore": "^1.6.0"
+  },
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "mocha": "^1.20.1",
+    "nomnom": "^1.8.0",
+    "should": "^4.0.4"
+  },
+  "description": "An elegant solution for selecting dates",
+  "main": "sheql.js",
+  "directories": {
+    "test": "tests"
+  },
+  "bin": {
+    "sheql": "./bin/sheql"
+  },
+  "scripts": {
+    "test": "mocha test/test.*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tusharmath/sheql.git"
+  },
+  "author": "Tushar Mathur <tusharmath@gmail.com> (http://tusharm.com/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tusharmath/sheql/issues"
+  },
+  "preferGlobal": true,
+  "homepage": "https://github.com/tusharmath/sheql"
 }

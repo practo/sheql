@@ -1,14 +1,30 @@
 #!/usr/bin/env coffee
 
 sh = require('../src/executor')()
-str = process.argv[2]
-startYear = process.argv[3] or new Date().getFullYear()
-endYear = process.argv[4] or new Date().getFullYear()
+nomnom = require 'nomnom'
+
+#Setting up default dates
+startYear = new Date().getFullYear()
+endYear =  new Date().getFullYear()
 startDate = new Date startYear, 0, 1
 endDate = new Date endYear, 11, 31
 
-dateCollection = sh.executor str, startDate, endDate
+toDateCallback = (str) ->new Date str
 
+
+
+opts = nomnom
+.option 'startDate', default: startDate, transform: toDateCallback, help : "Eg: 2010-01-23 (YYYY-MM-DD).Default:"
+.option 'endDate', default: endDate, transform: toDateCallback, help : "Eg: 2010-01-23 (YYYY-MM-DD). Default:"
+.option 'startOfWeek', default: 0, help : "Eg: 0 for sun, 1 for mon etc. Default:"
+.parse()
+
+#Handling cases
+if opts._.length is 0
+    return console.log "Eg: $ sheql \"y.53w m:n[2x] d.sat\" "
+
+#Calling Executor
+dateCollection = sh.executor opts._[0], opts.startDate, opts.endDate
 
 for i in dateCollection
     console.log i.toDateString()
