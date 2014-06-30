@@ -33,7 +33,7 @@ module.exports = ->
                     startDate: wStartDate
                     endDate: date
                     type: 'week'
-                    props: []
+                    props: [ Days.dayCount(wStartDate, date).toString() + 'd']
 
 
             #Go to next date

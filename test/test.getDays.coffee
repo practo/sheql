@@ -41,7 +41,11 @@ describe "getDays", ->
         it "should return dayCount", ->
             startDate = new Date 2014, 0, 1
             endDate = new Date 2014,1,5
-            dy.dayCount(startDate, endDate).should.equal  35
+            dy.dayCount(startDate, endDate).should.equal  36
+
+            startDate = new Date 2014, 5, 22
+            endDate = new Date 2014, 5, 29
+            dy.dayCount(startDate, endDate).should.equal  8
 
     describe "dayCountForMonth", ->
         it "should return dayCount", ->

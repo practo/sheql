@@ -31,6 +31,13 @@ describe "getWeeks", ->
             w1.startDate.valueOf().should.equal dStart.valueOf()
             w1.endDate.valueOf().should.equal (new Date 2013, 11, 28).valueOf()
 
+         it "should attach weeks size in days", ->
+            dStart = new Date 2014, 5, 22
+            dEnd = new Date 2014, 6, 1
+            [w1, w2, w3] = wk.getCollection(dStart, dEnd)
+            w1.props.should.eql ['7d']
+            w2.props.should.eql ['3d']
+
     describe "getCollectionForMonth", ->
         it "should exist", -> should.exist wk.getCollectionForMonth
 
@@ -63,3 +70,4 @@ describe "getWeeks", ->
             dStart = new Date 2013, 11, 30
             dEnd = new Date 2014, 0, 2
             wk.weekCount(dStart, dEnd).should.equal 1
+
