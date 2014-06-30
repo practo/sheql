@@ -2,8 +2,8 @@ should = require "should"
 describe "getYears", ->
     getYears = {}
     yr = {}
-    dStart = ''
-    dEnd = ''
+    dStart = 0
+    dEnd = 0
     beforeEach ->
         yr = getYears()
         dStart = new Date 2016, 1, 23
@@ -31,12 +31,13 @@ describe "getYears", ->
 
         it "should attach props", ->
             [year1,year2,..., year20] = yr.getCollection(dStart, dEnd)
-            year1.props.should.eql ['366d']
-            year2.props.should.eql ['365d']
-            year20.props.should.eql ['366d']
+            year1.props.should.eql ['366d', '45w']
+            year2.props.should.eql ['365d', '53w']
+            year20.props.should.eql ['366d', '20w']
 
         it "should attach startDate and endDate", ->
             [year1, year2,..., yearlast] = yr.getCollection(dStart, dEnd)
+
             year1.startDate.toString().should.equal dStart.toString()
             year1.endDate.toString().should.equal (new Date 2016, 11, 31).toString()
 

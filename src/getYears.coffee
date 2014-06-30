@@ -1,4 +1,5 @@
 Days = require('./getDays')()
+Weeks = require('./getWeeks')()
 module.exports = ->
     obj = {}
     getStartDate = (startDate, year) ->
@@ -14,10 +15,12 @@ module.exports = ->
         tmpEndDate
 
 
-    propCollection = (year) ->
+    propCollection = (startDate, endDate) ->
+        year = startDate.getFullYear()
+        weekCount = "#{Weeks.weekCount startDate, endDate}w"
         isLeap = obj.isLeapYear year
         dayCount = if isLeap is true then '366d' else '365d'
-        [dayCount]
+        [dayCount, weekCount]
 
 
     obj.isLeapYear = (year) ->
@@ -29,16 +32,16 @@ module.exports = ->
         years = []
         count = endDate.getFullYear() - startDate.getFullYear()
         currentYear = startDate.getFullYear()
-        yStartDate = new Date startDate.getFullYear(), 0, 1
-        yEndDate = new Date endDate.getFullYear(), 11, 31
 
         for i in [0..count]
+            yStartDate = getStartDate startDate, currentYear
+            yEndDate = getEndDate endDate, currentYear
 
             years.push
                 type: 'year'
-                props: propCollection currentYear
-                startDate : getStartDate startDate, currentYear
-                endDate : getEndDate endDate, currentYear
+                props: propCollection yStartDate, yEndDate
+                startDate : yStartDate
+                endDate : yEndDate
             currentYear++
 
         years
