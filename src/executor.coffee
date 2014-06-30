@@ -13,18 +13,18 @@ module.exports = ->
     arr = []
     sheql = {}
 
-    sheql.getCollections = (ast, itemCollection, startDate, endDate, filterName)->
+    getCollections = (ast, itemCollection, startDate, endDate, filterName)->
         filteredCollection = []
         _cb = collectionBuilder[filterName]
         if ast[filterName]
             if itemCollection.length > 0
                 _.each itemCollection, (item)=>
                     tmpCollection = _cb.getCollection item.startDate, item.endDate
-                    arr.push.apply filteredCollection, @filterCollection tmpCollection, ast[filterName]
+                    arr.push.apply filteredCollection,  sheql.filterCollection tmpCollection, ast[filterName]
+
             else
                 tmpCollection = _cb.getCollection startDate, endDate
-                filteredCollection = @filterCollection tmpCollection, ast[filterName]
-
+                filteredCollection = sheql.filterCollection tmpCollection, ast[filterName]
             filteredCollection
         else
 
@@ -53,16 +53,16 @@ module.exports = ->
         ast = lexer.parser str
 
         itemCollection = []
-        itemCollection = @getCollections ast, itemCollection, startDate, endDate, 'y'
+        itemCollection = getCollections ast, itemCollection, startDate, endDate, 'y'
 
         # console.log itemCollection
-        itemCollection = @getCollections ast, itemCollection, startDate, endDate, 'm'
+        itemCollection = getCollections ast, itemCollection, startDate, endDate, 'm'
 
         # console.log itemCollection
-        itemCollection = @getCollections ast, itemCollection, startDate, endDate, 'w'
+        itemCollection = getCollections ast, itemCollection, startDate, endDate, 'w'
 
         # console.log itemCollection
-        itemCollection = @getCollections ast, itemCollection, startDate, endDate, 'd'
+        itemCollection = getCollections ast, itemCollection, startDate, endDate, 'd'
 
         _.map itemCollection, (i) -> i.value
 
