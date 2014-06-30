@@ -61,6 +61,10 @@ describe "getWeeks", ->
             dEnd = new Date 2014, 1, 20
             wk.weekCount(dStart, dEnd).should.equal 3
 
+            dStart = new Date 2016, 3, 15
+            dEnd = new Date 2016, 3, 23
+            wk.weekCount(dStart, dEnd).should.equal 2
+
         it "should return week count for year", ->
             dStart = new Date 2014, 0, 10
             dEnd = new Date 2014, 1, 14

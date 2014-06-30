@@ -1,4 +1,5 @@
 Days = require('./getDays')()
+Weeks = require('./getWeeks')()
 module.exports = ->
     monthName = [
         'jan', 'feb', 'mar',
@@ -24,7 +25,14 @@ module.exports = ->
 
 
 
-    propCollection = (year, month) -> [monthName[month], Days.dayCountForMonth(year, month)+'d']
+    propCollection = (startDate, endDate) ->
+        year = startDate.getFullYear()
+        month = startDate.getMonth()
+        [
+            monthName[month]
+            Days.dayCountForMonth(year, month)+'d'
+            Weeks.weekCount(startDate, endDate)+'w'
+        ]
 
 
     obj.monthCountForYear = (startDate, endDate, year) ->
@@ -75,16 +83,17 @@ module.exports = ->
         date = new Date startYear, startMonth, 1
 
         for i in [0...count]
-            # console.log date
 
             year = date.getFullYear()
             month = date.getMonth()
+            mStartDate = getStartDate startDate, year, month
+            mEndDate = getEndDate endDate, year, month
 
             months.push
                 type: 'month'
-                props: propCollection year, month
-                startDate: getStartDate startDate, year, month
-                endDate: getEndDate endDate, year, month
+                props: propCollection mStartDate, mEndDate
+                startDate: mStartDate
+                endDate: mEndDate
 
             date.setMonth date.getMonth() + 1
 

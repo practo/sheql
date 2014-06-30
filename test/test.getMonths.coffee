@@ -64,10 +64,10 @@ describe "getMonths", ->
             dStart = new Date 2016, 0, 23
             dEnd = new Date 2016, 3, 15
 
-            [m1, m2, m3] = mn.getCollection dStart, dEnd
-            m1.props.should.eql ['jan', '31d']
-            m2.props.should.eql ['feb', '29d']
-            m3.props.should.eql ['mar', '31d']
+            [jan, feb, ..., apr] = mn.getCollection dStart, dEnd
+            jan.props.should.eql ['jan', '31d', '3w']
+            feb.props.should.eql ['feb', '29d', '5w']
+            apr.props.should.eql ['apr', '30d', '3w']
 
         it "should attach meta", ->
             dStart = new Date 2016, 0, 23
