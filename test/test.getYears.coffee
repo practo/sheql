@@ -29,15 +29,11 @@ describe "getYears", ->
             [year] = yr.getCollection(dStart, dEnd)
             year.type.should.equal 'year'
 
-        # it "should attach value", ->
-        #     [year] = yr.getCollection(dStart, dEnd)
-        #     year.value.should.equal 2016
-
         it "should attach props", ->
             [year1,year2,..., year20] = yr.getCollection(dStart, dEnd)
-            year1.props.should.eql ['leap']
-            year2.props.should.eql []
-            year20.props.should.eql ['leap']
+            year1.props.should.eql ['366d']
+            year2.props.should.eql ['365d']
+            year20.props.should.eql ['366d']
 
         it "should attach startDate and endDate", ->
             [year1, year2,..., yearlast] = yr.getCollection(dStart, dEnd)

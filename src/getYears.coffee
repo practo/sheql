@@ -1,3 +1,4 @@
+Days = require('./getDays')()
 module.exports = ->
     obj = {}
     getStartDate = (startDate, year) ->
@@ -15,9 +16,8 @@ module.exports = ->
 
     propCollection = (year) ->
         isLeap = obj.isLeapYear year
-        if isLeap is true
-            return ['leap']
-        []
+        dayCount = if isLeap is true then '366d' else '365d'
+        [dayCount]
 
 
     obj.isLeapYear = (year) ->
