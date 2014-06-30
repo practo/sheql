@@ -47,8 +47,9 @@ module.exports = ->
         collection
 
 
-    sheql.executor = (str, startDate, endDate)->
+    sheql.executor = (str, startDate, endDate, startDay=0)->
         filterKeys = ['y', 'm', 'w', 'd']
+        collectionBuilder.w.startDay = startDay
         ast = lexer.parser str
         itemCollection = []
         isEmptyCollection = false
