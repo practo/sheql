@@ -3,8 +3,10 @@ module.exports = (grunt) ->
     matchdep.filterDev('grunt-*').forEach grunt.loadNpmTasks
     grunt.initConfig
         pkg: grunt.file.readJSON 'package.json'
-        release:
-            options: file: grunt.option('file')
+        release: {}
+        bowerRelease:options:
+            main: './lib/sheql.js'
+            endpoint: 'git://github.com/tusharmath/sheql.git'
 
         browserify:
             compile:
