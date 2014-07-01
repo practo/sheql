@@ -2,7 +2,7 @@
 
 var dateCollection, endDate, endYear, i, nomnom, opts, sh, startDate, startYear, toDateCallback, _i, _len;
 
-sh = require('../lib/sheql.js')();
+sh = require('../lib/sheql.js');
 
 nomnom = require('nomnom');
 
