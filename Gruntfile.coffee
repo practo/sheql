@@ -6,6 +6,6 @@ module.exports = (grunt) ->
         release: {}
         browserify:
             compile:
-                files: './lib/sheql.js': ['./index.js']
+                files: './lib/sheql.js': ['./src/executor.coffee']
                 options: transform: ['coffeeify']
     grunt.registerTask 'publish', ['browserify', 'release']
