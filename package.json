@@ -1,6 +1,6 @@
 {
   "name": "sheql",
-  "version": "0.0.23",
+  "version": "0.0.24",
   "private": false,
   "devDependencies": {
     "chai": "^1.9.1",
