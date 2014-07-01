@@ -1,7 +1,7 @@
 {
   "name": "sheql",
   "main": "index.js",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "homepage": "https://github.com/tusharmath/sheql",
   "authors": [
     "tushar mathur <tushar.mathur@practo.com>"
