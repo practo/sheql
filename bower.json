@@ -1,19 +1,19 @@
 {
-  "name": "sheql",
-  "main": "index.js",
-  "version": "0.0.17",
-  "homepage": "https://github.com/tusharmath/sheql",
-  "authors": [
-    "tushar mathur <tushar.mathur@practo.com>"
-  ],
-  "description": "An elegant solution for selecting dates",
-  "license": "MIT",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests",
-    "*.coffee"
-  ]
+    "name": "sheql",
+    "main": "index.js",
+    "version": "0.0.16",
+    "homepage": "https://github.com/tusharmath/sheql",
+    "authors": [
+        "tushar mathur <tushar.mathur@practo.com>"
+    ],
+    "description": "An elegant solution for selecting dates",
+    "license": "MIT",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests",
+        "*.coffee"
+    ]
 }

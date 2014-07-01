@@ -4,11 +4,12 @@ module.exports = (grunt) ->
     grunt.initConfig
         pkg: grunt.file.readJSON 'package.json'
         release:
-            npmPublish: options: file: 'package.json'
-            bowerPublish: options: file: 'bower.json'
+            bower: options: file: 'bower.json', tag: false
+            npm: options: tag: false
+            tag: options: bump: false
+
         browserify:
             compile:
                 files: './lib/sheql.js': ['./src/executor.coffee']
                 options: transform: ['coffeeify']
-    grunt.registerTask 'publish-bower', ['browserify', 'release:bowerPublish']
-    grunt.registerTask 'publish-npm', ['browserify', 'release:npmPublish']
+
