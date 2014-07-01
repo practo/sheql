@@ -4,9 +4,7 @@ module.exports = (grunt) ->
     grunt.initConfig
         pkg: grunt.file.readJSON 'package.json'
         release:
-            bower: options: file: 'bower.json', tag: false
-            npm: options: tag: false
-            tag: options: bump: false
+            options: file: grunt.option('file')
 
         browserify:
             compile:
