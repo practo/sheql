@@ -146,11 +146,23 @@ m:n[2x] d.sat:l[x+2]:n[2x+1]
 
 ##How to use from cli
 
-1. Have `coffee-script` and `node` installed first.
-2. run `npm install sheql -g`.
-3. Example - __get all the tuesdays of the year, except if they fall on the last day of the month__
+1. run `npm install sheql -g`.
+2. Example - __get all the tuesdays of the year, except if they fall on the last day of the month__
     ```
     sheql 'm.sep d:l[x+2].tue'
 
     ```
-4. To use it as a package dependency, install it locally and use `require 'sheql'`.
+2. To use it as a package dependency, install it locally and use `require 'sheql'`.
+
+
+##Using as a dependency
+
+```js
+var sheql = require('sheql');
+var startDate = new Date(2010, 1,10);
+var endDate = new Date(2110, 4,15);
+var startDayOfWeek = 1; //Monday
+sheql.getDates('m.sep d:l[x+2].tue', startDate, endDate, startDayOfWeek);
+```
+
+
