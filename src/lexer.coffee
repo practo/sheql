@@ -1,9 +1,9 @@
-_ = require("underscore")
+utils = require './utils.coffee'
 module.exports = ->
     _proto = {}
 
     _proto._splitOnTokens = (str) ->
-        _.filter str.split(/( |:|\.|\!)/), (i) ->
+        utils.filterItems str.split(/( |:|\.|\!)/), (i) ->
             i isnt " " and i isnt ""
 
 
@@ -39,7 +39,7 @@ module.exports = ->
         tokenType = undefined
         lastBaseToken = undefined
         filterOn = undefined
-        _.each tokenCollection, ((token) =>
+        for token in tokenCollection
             if token.match(/^(y|m|w|d)$/)
                 tree[token] = []
                 lastBaseToken = token
@@ -54,7 +54,7 @@ module.exports = ->
                 tree[lastBaseToken].push
                     filterType: tokenType
                     filterOn: filterOn
-        )
+
         tree
 
     _proto.parser = (str) ->

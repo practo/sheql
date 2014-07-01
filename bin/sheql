@@ -1,35 +1,51 @@
-#!/usr/bin/env coffee
+#!/usr/bin/env node
 
-sh = require('../src/executor')()
-nomnom = require 'nomnom'
+var dateCollection, endDate, endYear, i, nomnom, opts, sh, startDate, startYear, toDateCallback, _i, _len;
 
-#Setting up default dates
-startYear = new Date().getFullYear()
-endYear =  new Date().getFullYear()
-startDate = new Date startYear, 0, 1
-endDate = new Date endYear, 11, 31
+sh = require('../lib/sheql.js')();
 
-toDateCallback = (str) ->new Date str
+nomnom = require('nomnom');
 
+startYear = new Date().getFullYear();
 
+endYear = new Date().getFullYear();
 
-opts = nomnom
-.option 'startDate', default: startDate, transform: toDateCallback, help : "Eg: 2010-01-23 (YYYY-MM-DD).Default:"
-.option 'endDate', default: endDate, transform: toDateCallback, help : "Eg: 2010-01-23 (YYYY-MM-DD). Default:"
-.option 'startOfWeek', default: 0, help : "Eg: 0 for sun, 1 for mon etc. Default:"
-.parse()
+startDate = new Date(startYear, 0, 1);
 
-#Handling cases
-if opts._.length is 0
-    return console.log "Eg: $ sheql \"y.53w m:n[2x] d.sat\" "
+endDate = new Date(endYear, 11, 31);
 
-#Calling Executor
-dateCollection = sh.executor opts._[0], opts.startDate, opts.endDate
+toDateCallback = function (str) {
+    return new Date(str);
+};
 
-for i in dateCollection
-    console.log i.toDateString()
+opts = nomnom.option('startDate', {
+    "default": startDate,
+    transform: toDateCallback,
+    help: "Eg: 2010-01-23 (YYYY-MM-DD).Default:"
+}).option('endDate', {
+    "default": endDate,
+    transform: toDateCallback,
+    help: "Eg: 2010-01-23 (YYYY-MM-DD). Default:"
+}).option('startOfWeek', {
+    "default": 0,
+    help: "Eg: 0 for sun, 1 for mon etc. Default:"
+}).parse();
 
-console.log "\nTotal:\t#{dateCollection.length} dates"
-console.log "From:\t#{startDate.toDateString()}"
-console.log "To:\t#{endDate.toDateString()}"
-console.log "Week:\tSunday"
+if (opts._.length === 0) {
+    return console.log("Eg: $ sheql \"y.53w m:n[2x] d.sat\" ");
+}
+
+dateCollection = sh.executor(opts._[0], opts.startDate, opts.endDate, opts.startOfWeek);
+
+for (_i = 0, _len = dateCollection.length; _i < _len; _i++) {
+    i = dateCollection[_i];
+    console.log(i.toDateString());
+}
+
+console.log("\nTotal:\t" + dateCollection.length + " dates");
+
+console.log("From:\t" + (startDate.toDateString()));
+
+console.log("To:\t" + (endDate.toDateString()));
+
+console.log("Week:\tSunday");

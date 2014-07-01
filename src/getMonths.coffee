@@ -1,5 +1,5 @@
-Days = require('./getDays')()
-Weeks = require('./getWeeks')()
+Days = require('./getDays.coffee')()
+Weeks = require('./getWeeks.coffee')()
 module.exports = ->
     monthName = [
         'jan', 'feb', 'mar',

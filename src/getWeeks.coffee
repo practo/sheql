@@ -1,4 +1,4 @@
-Days = require('./getDays')()
+Days = require('./getDays.coffee')()
 module.exports = ->
     obj = startDay: 0
 

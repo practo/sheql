@@ -1,13 +1,12 @@
-_ = require 'underscore'
-lexer = require('./lexer')()
-propfilter = require('./propFilter')()
-indexfilter = require('./indexFilter')()
+lexer = require('./lexer.coffee')()
+propfilter = require('./propFilter.coffee')()
+indexfilter = require('./indexFilter.coffee')()
 
 collectionBuilder =
-    d : require('./getDays')()
-    w : require('./getWeeks')()
-    m : require('./getMonths')()
-    y : require('./getYears')()
+    d : require('./getDays.coffee')()
+    w : require('./getWeeks.coffee')()
+    m : require('./getMonths.coffee')()
+    y : require('./getYears.coffee')()
 
 module.exports = ->
     arr = []
@@ -18,7 +17,7 @@ module.exports = ->
         _cb = collectionBuilder[filterName]
         if ast[filterName]
             if itemCollection.length > 0
-                _.each itemCollection, (item) ->
+                for item in itemCollection
                     tmpCollection = _cb.getCollection item.startDate, item.endDate
                     arr.push.apply filteredCollection, sheql.filterCollection tmpCollection, ast[filterName]
             else
@@ -30,7 +29,7 @@ module.exports = ->
 
 
     sheql.filterCollection = (collection, filterProps) ->
-        _.each filterProps, (prop) ->
+        for prop in filterProps
 
             if prop.filterType is '.'
                 collection = propfilter.hasProp collection, prop.filterOn
@@ -58,6 +57,6 @@ module.exports = ->
             if isEmptyCollection is false
                 [itemCollection, isEmptyCollection] =
                     getCollections ast, itemCollection, startDate, endDate, i
-        _.map itemCollection, (i) -> i.value
+        return (i.value for i in itemCollection)
 
     sheql

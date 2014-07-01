@@ -1,4 +1,3 @@
-_ = require 'underscore'
 module.exports = ->
     obj = {}
 
