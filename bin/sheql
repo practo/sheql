@@ -2,8 +2,7 @@
 
 var dateCollection, endDate, endYear, i, nomnom, opts, sh, startDate, startYear, toDateCallback, _i, _len;
 
-sh = require('../lib/sheql.js');
-
+sh = require('../lib/executor')();
 nomnom = require('nomnom');
 
 startYear = new Date().getFullYear();
@@ -15,31 +14,31 @@ startDate = new Date(startYear, 0, 1);
 endDate = new Date(endYear, 11, 31);
 
 toDateCallback = function (str) {
-    return new Date(str);
+	return new Date(str);
 };
 
 opts = nomnom.option('startDate', {
-    "default": startDate,
-    transform: toDateCallback,
-    help: "Eg: 2010-01-23 (YYYY-MM-DD).Default:"
+	"default": startDate,
+	transform: toDateCallback,
+	help: "Eg: 2010-01-23 (YYYY-MM-DD).Default:"
 }).option('endDate', {
-    "default": endDate,
-    transform: toDateCallback,
-    help: "Eg: 2010-01-23 (YYYY-MM-DD). Default:"
+	"default": endDate,
+	transform: toDateCallback,
+	help: "Eg: 2010-01-23 (YYYY-MM-DD). Default:"
 }).option('startOfWeek', {
-    "default": 0,
-    help: "Eg: 0 for sun, 1 for mon etc. Default:"
+	"default": 0,
+	help: "Eg: 0 for sun, 1 for mon etc. Default:"
 }).parse();
 
 if (opts._.length === 0) {
-    return console.log("Eg: $ sheql \"y.53w m:n[2x] d.sat\" ");
+	return console.log("Eg: $ sheql \"y.53w m:n[2x] d.sat\" ");
 }
 
 dateCollection = sh.executor(opts._[0], opts.startDate, opts.endDate, opts.startOfWeek);
 
 for (_i = 0, _len = dateCollection.length; _i < _len; _i++) {
-    i = dateCollection[_i];
-    console.log(i.toDateString());
+	i = dateCollection[_i];
+	console.log(i.toDateString());
 }
 
 console.log("\nTotal:\t" + dateCollection.length + " dates");

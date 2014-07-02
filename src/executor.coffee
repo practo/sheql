@@ -1,12 +1,12 @@
-lexer = require('./lexer.coffee')()
-propfilter = require('./propFilter.coffee')()
-indexfilter = require('./indexFilter.coffee')()
+lexer = require('./lexer')()
+propfilter = require('./propFilter')()
+indexfilter = require('./indexFilter')()
 
 collectionBuilder =
-    d : require('./getDays.coffee')()
-    w : require('./getWeeks.coffee')()
-    m : require('./getMonths.coffee')()
-    y : require('./getYears.coffee')()
+    d : require('./getDays')()
+    w : require('./getWeeks')()
+    m : require('./getMonths')()
+    y : require('./getYears')()
 
 module.exports = ->
     arr = []
