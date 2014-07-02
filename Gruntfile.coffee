@@ -15,5 +15,5 @@ module.exports = (grunt) ->
             compile:
                 files: './lib/sheql.js': ['./src/executor']
                 options: transform: ['coffeeify']
-        grunt.registerTask 'publish', ['browserify', 'release']
+        grunt.registerTask 'publish', ['coffee', 'release']
 
